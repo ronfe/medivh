@@ -2,7 +2,9 @@
 
 ## 依赖 ##
 
-    npm install
+    npm install 
+    
+    npm install -g gulp
 
     bower install
 

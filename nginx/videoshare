@@ -1,0 +1,13 @@
+server {
+        listen 80;
+        server_name vs1.yangcong345.com;
+        root /home/master/medivh/bin;
+
+        # if ($http_user_agent !~* (Baidu|qiniu)) {
+        #         return 403;
+        # }
+
+        location / {
+		try_files $uri =404;
+        }
+}
