@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    |     
+    title TITLE
+    // inject:js
+    // endinject
+    // inject:css
+    // endinject
+  body
+    h3 #{chapter}
+    h3 #{topic}
+    h3 #{task}
+    h3 #{activity}
+    h3 #{video}
+    video.mejs-player(src='#{video}', autoplay='')
