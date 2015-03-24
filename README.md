@@ -1,5 +1,11 @@
 # medivh #
 
+## 依赖 ##
+
+    npm install
+
+    bower install
+
 ## 工作流 ##
 
     npm start | test // 批量生成html

@@ -4,8 +4,8 @@
   "description": "html generator",
   "main": "connect.js",
   "scripts": {
-    "start": "rm out/*.* && node connect.js",
-    "test": "rm out/*.* && node connect.js"
+    "start": "rm -rf out && mkdir out && node connect.js",
+    "test": "rm -rf out && mkdir out && node connect.js"
   },
   "repository": {
     "type": "git",
