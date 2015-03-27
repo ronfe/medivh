@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "mediaelement": "~2.16.4"
+    "mediaelement": "~2.16.4",
+    "bowser": "~0.7.2"
   }
 }

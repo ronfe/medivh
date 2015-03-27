@@ -13,6 +13,9 @@ var plugins = require("gulp-load-plugins")({
     }
 });
 
+// script
+var SCRIPT = 'template/script.js';
+
 // other assets
 var misc = [];
 var em = bowerDir + '/mediaelement/build/';
@@ -32,7 +35,7 @@ gulp.task('js', function () {
     return gulp.src([bowerDir + '/jquery/dist/jquery.js'].concat(plugins.mainBowerFiles({
             base: bowerDir,
             filter: /.*((?!jquery).)\.js$/i
-        })))
+        })).concat([SCRIPT]))
         .pipe(plugins.concat(bowerDir + bower.version + '.min.js'))
         .pipe(plugins.uglify())
         .pipe(gulp.dest(RELEASE))
@@ -56,7 +59,7 @@ gulp.task('build_copy', function () {
     return gulp.src(misc.concat(plugins.mainBowerFiles({
             base: bowerDir,
             filter: /.*\.((?!less).)*$/i
-        })))
+        })).concat([SCRIPT]))
         .pipe(gulp.dest(DEBUG))
         .on('error', plugins.util.log);
 });
