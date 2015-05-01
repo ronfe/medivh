@@ -1,0 +1,114 @@
+html {
+    height: 100%;
+    background: #0b4575; /* Old browsers */
+    background: -moz-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0b4575), color-stop(70%,#125892), color-stop(100%,#196aaf)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #0b4575 0%,#125892 70%,#196aaf 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #0b4575 0%,#125892 70%,#196aaf 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #0b4575 0%,#125892 70%,#196aaf 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #0b4575 0%,#125892 70%,#196aaf 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0b4575', endColorstr='#196aaf',GradientType=0 ); /* IE6-9 */
+}
+
+body {
+    margin: 0 5% 2% 5%;
+    overflow-y: hidden;
+}
+
+li {
+    list-style-type: none;
+    display: inline;
+    padding-left: 40px;
+}
+
+.task-hyper-area {
+  margin: auto;
+  margin-top: 20px;
+  border: solid 10px #235680;
+  border-radius: 10px;
+  width: 915px;
+  overflow: hidden;
+  background: #6d6b70;
+}
+
+.hyper-zone{
+  width: 850px;
+  display: inline-block;
+  float: left;
+  background-color: black;
+  overflow: hidden;
+}
+
+.video-list-area{
+  background-color: #41484d;
+  min-height: 540px;
+  width: 260px;
+  position: relative;
+  padding-top: 20px;
+  float: right;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.video-thumbnail {
+  height: 100px;
+  width: 240px;
+  margin: 15px 10px 0px 10px;
+  background-size: 240px 100px;
+  -webkit-background-size: 240px 100px;
+  -moz-background-size: 240px 100px;
+  -ms-background-size: 240px 100px;
+  -o-background-size: 240px 100px;
+  position: relative;
+  background-image: url(http://yc-course.qiniudn.com/2a%20%E8%BE%B9%E8%BE%B9%E8%BE%B9%E5%88%A4%E5%AE%9A%E5%AE%9A%E7%90%86%EF%BC%88SSS%EF%BC%89.jpg);
+  background-position: 50% 50%;
+}
+
+.header {
+    padding: 22px 21px 22px 21px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    float: left;
+}
+
+#register {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#register:hover {
+    color: #3498db;
+    background-color: transparent;
+    -webkit-transition:all 0.2s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	transition:all 0.5s ease-in-out;
+}
+
+#signin {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#signin:hover {
+    color: #3498db;
+    background-color: transparent;
+    -webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	transition:all 0.5s ease-in-out;
+}
+#video-list{
+  height: 400px;
+  overflow-y: auto;
+}
+
+.sign {
+    float: right;
+}

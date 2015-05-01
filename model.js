@@ -52,8 +52,8 @@ exports.traverse = function (mongoose, cb) {
                                     async.each(activities, function (activity, callback) {
                                         Video.find({_id: {$in: activity.videos}, type: 'main'}, function (err, videos) {
                                             _.forEach(videos, function (video) {
-                                                target.push({chapter: chapter.name, topic: topic.name, task: task.type,
-                                                    activity: activity.name, video: video.url});
+                                                target.push({chapter: chapter.name, topic: topic.name, topicIcon: topic._doc.icon, task: task.type,
+                                                    activity: activity.name, actThumbnail: activity._doc.thumbnail, video: video.url});
                                             });
                                             callback();
                                         })
