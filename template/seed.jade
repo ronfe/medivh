@@ -1,63 +1,123 @@
 doctype html
 html(xmlns:wb='http://open.weibo.com/wb')
   head
-    title pc
+    title &#x6709;&#x7406;&#x6570;
     |     
     meta(charset='utf8')
+    |     
+    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+    |     
+    meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
     // inject:css
-    // endinject
-    // inject:js
-    // endinject
-  body
-    .container
-      nav.navbar.navbar-transparent.navbar-static-top
-        .navbar-header
-          a.navbar-brand(href='/')
-            img(src='logobeta.png')
-        |             
-        .collapse.navbar-collapse
-          ul.nav.navbar-nav.navbar-right
-            li
-              a(href='http://yangcong345.com/signup') &#x6CE8;&#x518C;
-            |                     
-            li
-              a(href='http://yangcong345.com/login') &#x767B;&#x5F55;
+    link(rel='stylesheet', href='bootstrap.css')
     |     
-    .container.text-inverse
-      .topic-information
-        img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src='http://yc-course.qiniudn.com/%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%88%86%E7%B1%BB.png')
-        |             
-        span.topic-describe [&#x63D0;&#x9AD8;] &#x6709;&#x7406;&#x6570;&#x57FA;&#x7840; &gt; &#x6709;&#x7406;&#x6570;&#x7684;&#x57FA;&#x7840;&#x89C6;&#x9891;&#x6807;&#x9898;
+    link(rel='stylesheet', href='font-awesome.css')
     |     
-    .task-hyper-area.text-inverse
-      .hyper-zone
-        video.mejs-player(src='http://7xaw4c.com2.z0.glb.qiniucdn.com/相交线平行线_1a_几何学的创始传说_欧几里得和几何原本.mp4', width='850px', autoplay='')
-      |         
-      .video-list-area
-        #video-list
-          .waiting-video.text-center.video-thumbnail(style='background-image: url(http://yc-course.qiniudn.com/2a%20%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E6%A6%82%E5%BF%B5.jpg);')
-          |                 
-          .text-center.thumbnail-float
-            span.fa.fa-play-circle
-            |                     &#x6709;&#x7406;&#x6570;&#x7684;&#x57FA;&#x7840;&#x89C6;&#x9891;&#x6807;&#x9898;
-        |             
-        #video-sharing-zone
-          ul.nav.navbar-nav
-            li#share-label &#x5206;&#x4EAB;
-            |                     
+    link(rel='stylesheet', href='mediaelementplayer.css')
+    |     
+    link(rel='stylesheet', href='seed.css')
+    // endinject
+  |   
+  body.pc
+    #pcluodi
+      .container
+        nav.navbar.navbar-transparent.navbar-static-top
+          .navbar-header
+            a.navbar-brand(href='http://yangcong345.com')
+              img(src='logobeta.png')
+          |           
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                a(href='http://yangcong345.com/signup') &#x6CE8;&#x518C;
+              |               
+              li
+                a(href='http://yangcong345.com/login') &#x767B;&#x5F55;
+      |       
+      .container.text-inverse
+        .topic-information
+          img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src='http://yc-course.qiniudn.com/%E6%9C%89%E7%90%86%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95.png')
+          span.topic-describe [&#x57FA;&#x7840;] &#x6709;&#x7406;&#x6570; &gt; &#x6709;&#x7406;&#x6570;&#x7684;&#x4E58;&#x6CD5;&#xFF08;&#x5F02;&#x53F7;&#xFF09;
+      |       
+      .task-hyper-area.text-inverse
+        .hyper-zone
+          video.mejs-player(src='http://7xaw4c.com2.z0.glb.qiniucdn.com/有理数_3a_有理数的乘法异号.mp4', width='850px', autoplay='')
+        |         
+        .video-list-area
+          #video-list
+            .waiting-video.text-center.video-thumbnail(style='background-image: URL(http://yc-course.qiniudn.com/3a.%E6%9C%89%E7%90%86%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95%EF%BC%88%E5%BC%82%E5%8F%B7%EF%BC%89.jpg);')
+            |             
+            .text-center.thumbnail-float
+              span.fa.fa-play-circle
+              |                    &#x6709;&#x7406;&#x6570;&#x7684;&#x4E58;&#x6CD5;&#xFF08;&#x5F02;&#x53F7;&#xFF09;
+          |           
+          #video-sharing-zone
+            ul.nav.navbar-nav
+              li#share-label &#x5206;&#x4EAB;
+              |               
+              li
+                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qq")')
+                  img.share-logo(src='qq.png')
+              |               
+              li
+                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qzone")')
+                  img.share-logo(src='qzone.png')
+              |               
+              li
+                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("weibo")')
+                  img.share-logo(src='weibo.png')
+      |       
+      #bottom-add.bottom-ad.text-inverse
+        span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
+        |           
+        a.btn.btn-success(href='http://yangcong345.com') &#x6D0B;&#x8471;&#x6570;&#x5B66;
+        |           
+        a.banner-remove(onclick="$('#bottom-add').remove();")
+          .fa.fa-times
+    |     
+    #mobileluodi
+      .banner
+        a.mobile-brand(href='http://yangcong345.com')
+          img(src='logobeta.png')
+        |         
+        .text-inverse.mobile-text-right
+          span &#x79D1;&#x5B66;&#x9884;&#x4E60;&#x795E;&#x5668;
+      |       
+      .mobile-hyper-zone
+        video#mobile-video.mejs-player(src='http://7xaw4c.com2.z0.glb.qiniucdn.com/有理数_3a_有理数的乘法异号.mp4', onplay='$(".mejs-fullscreen-button").click();', poster='http://yc-course.qiniudn.com/3a.%E6%9C%89%E7%90%86%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95%EF%BC%88%E5%BC%82%E5%8F%B7%EF%BC%89.jpg', width='100%')
+        |         
+        .mobile-title
+          span &#x6709;&#x7406;&#x6570;&#xFF0C;&#x6709;&#x7406;&#x6570;&#x7684;&#x4E58;&#x6CD5;&#xFF08;&#x5F02;&#x53F7;&#xFF09;
+        |         
+        .mobile-sharing
+          span &#x5206;&#x4EAB;&#x7ED9;&#x5176;&#x4ED6;&#x5C0F;&#x4F19;&#x4F34;
+          |           
+          ul
             li
-              a.switch-sharing(href='http://connect.qq.com/widget/shareqq/index.html?url=yangcong345.com&title=洋葱数学')
+              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qq")')
                 img.share-logo(src='qq.png')
-            |                     
+            |             
             li
-              a.switch-sharing(href='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=yangcong345.com&shoucount=0&title=洋葱数学&summary=洋葱数学')
+              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qzone")')
                 img.share-logo(src='qzone.png')
-            |                     
+            |             
             li
-              a.switch-sharing(href='http://service.weibo.com/share/share.php?url=http%3A%2F%2Fyangcong345.com&type=button&language=zh_cn&appkey=1623791526&searchPic=false&style=simple')
+              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("weibo")')
                 img.share-logo(src='weibo.png')
-    |     
-    .bottom-ad.text-inverse
-      span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
-      |         
-      a.btn.btn-success(href='http://yangcong345.com') &#x6D0B;&#x8471;&#x6570;&#x5B66;
+      |       
+      a#footer-url(href='http://m.yangcong345.com')
+        .mobile-footer
+          .mobile-logo
+            img#yangcong-logo(src='yangcong.png')
+            // <span id="mobile-guide" class="text-inverse">&#x4E0B;&#x8F7D;&#x6D0B;&#x8471;&#x6570;&#x5B66;&#xFF0C;&#x770B;&#x66F4;&#x591A;&#x4F18;&#x8D28;&#x521D;&#x4E2D;&#x89C6;&#x9891;</span></div>
+      // inject:js
+      script(src='jquery.js')
+      |     
+      script(src='bootstrap.js')
+      |     
+      script(src='bowser.js')
+      |     
+      script(src='mediaelement-and-player.js')
+      |     
+      script(src='script.js')
+      // endinject
