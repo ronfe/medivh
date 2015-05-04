@@ -28,6 +28,7 @@ else if(bowser.ios){
     $('body').removeClass('pc');
     // $('body').addClass('mobile');
     $('#yangcong-logo').after('<span id="mobile-guide" class="text-inverse">更多优质视频，请通过电脑访问yangcong345.com</span></div>');
+    $('#footer-url').attr('href', 'javascript: void(0)');
 
 }
 else {
