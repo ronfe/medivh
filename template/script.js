@@ -102,7 +102,7 @@ var postPoint = {};
         $.ajax({
             async: false,
             type: 'POST',
-            url: 'http://localhost/point/' + window.location.search,
+            url: 'http://yangcong345.com/point/' + window.location.search,
             crossDomain: true,
             dataType: 'json',
             data: {"point": point},
