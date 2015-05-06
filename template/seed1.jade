@@ -1,14 +1,14 @@
 doctype html
 html(xmlns:wb='http://open.weibo.com/wb')
   head
-    title #{topic}
+    title #{activity}
     meta(charset='utf8')
     link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
     meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
     // inject:css
     // endinject
   body.pc(post-point="enterLandingPage")
-    #pcluodi(style='display:hidden')
+    #pcluodi
       .container
         nav.navbar.navbar-transparent.navbar-static-top
           .navbar-header
@@ -22,7 +22,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 a(href='http://yangcong345.com/login' post-point="clickLogin") &#x767B;&#x5F55;
       .container.text-inverse
         .topic-information
-          img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src='http://yc-course.qiniudn.com/%E6%9C%89%E7%90%86%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95.png')
+          img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src=topicIcon)
           case task
             when 'elementary'
               span.topic-describe [基础] #{chapter} &gt; #{activity}
@@ -35,7 +35,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
           video.mejs-player(src=video, width='850px', autoplay='')
         .video-list-area
           #video-list
-            .waiting-video.text-center.video-thumbnail(style='background-image: URL(#{actThumbnail});')
+            #video-thumbnail.waiting-video.text-center.video-thumbnail(style='background-image: URL(#{actThumbnail});' thumbnail=actThumbnail)
             .text-center.thumbnail-float
               span.fa.fa-play-circle
               |                    #{activity}
@@ -53,10 +53,10 @@ html(xmlns:wb='http://open.weibo.com/wb')
                   img.share-logo(src='weibo.png')
       #bottom-add.bottom-ad.text-inverse
         span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
-        a.btn.btn-success(href='http://yangcong345.com') &#x6D0B;&#x8471;&#x6570;&#x5B66;
+        a.btn.btn-success(href='http://yangcong345.com' post-point="clickLandingJump") &#x6D0B;&#x8471;&#x6570;&#x5B66;
         a.banner-remove(onclick="$('#bottom-add').remove();")
           .fa.fa-times
-    #mobileluodi(style='display:hidden')
+    #mobileluodi(style='display:none')
       .banner
         a.mobile-brand(href='http://m.yangcong345.com')
           img(src='logobeta.png')
@@ -81,6 +81,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
       a#footer-url(href='http://m.yangcong345.com')
         .mobile-footer
           .mobile-logo
-            img#yangcong-logo(src='yangcong.png')
+            img#yangcong-logo
       // inject:js
       // endinject
