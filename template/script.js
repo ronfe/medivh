@@ -1,3 +1,173 @@
+//Track data
+/**
+ * Created by ronfe on 15-5-5.
+ */
+
+/**
+ * Created by libook on 15-1-22.
+ */
+'use strict';
+/**
+ * You can use this attribute like these:
+ * <element post-point="clickSomething"></element>
+ * <element post-point='{"eventKey":"clickSomething","moredata":"somedata"}'></element>
+ * <element post-point='[{"eventKey":"clickSomething"},{"eventKey":"enterSomething"}]'></element>
+ *
+ * The eventKey may start with 'click' or 'enter'.
+ * And this attribute can automatically bind event like that.
+ *
+ * If you need to record other kind of events, you can also use this function with javascript like this:
+ * postPoint.buryPoint(element, pointData);
+ * And the point will be sent immediately.
+ */
+var postPoint = {};
++function ($, window) {
+    /**
+     * Generate a Point object with all needed information.
+     * @param pointData Some information from HTML attribute, after parsed to JSON.
+     * @returns {{}} A point object.
+     */
+    var initPoint = function (pointData) {
+        /**
+         * Schema of point.
+         */
+        var point = {
+            eventKey: '',
+            eventValue: {},
+            url: '',
+            header: {}
+        };
+
+        /**
+         * Insert data.
+         */
+        point.eventKey = pointData.eventKey;
+        point.url = window.location.pathname + window.location.hash;
+        // EventValue.
+        point.eventValue.fromUrl = window.location.pathname + window.location.hash;
+        // point.eventValue.preEventKey = simpleStorage.get('lastPoint.eventKey');
+        // Header.
+        +function () {
+            var tempQudao = window.location.search;
+            tempQudao = tempQudao.match(/(?:q\=).+/)[0].slice(2);
+            var q = tempQudao;
+            if (q !== undefined) {
+                if (point.header === undefined) {
+                    point.header = {};
+                }
+                point.header.q = q;
+            }
+        }();
+
+        /**
+         * Traversal elements of the value of this directive.
+         * If there is a same key in {point}, give the value into point.
+         * Else put the key-value in the point.eventValue.
+         */
+        for (var i in pointData) {
+            if (point[i] === undefined) {
+                point.eventValue[i] = pointData[i];
+            } else {
+                point[i] = pointData[i];
+            }
+        }
+
+        /**
+         * Delete empty fields.
+         */
+        for (var i in point) {
+            if (point[i] === '') {
+                delete point[i];
+            }
+        }
+
+        return point;
+    };
+
+    /**
+     * Send point data with Ajax.
+     * @param pointData
+     */
+    var sendPoint = function (pointData) {
+        var point = initPoint(pointData);
+
+        /**
+         * Save this point as lastPoint in simpleStorage.
+         */
+        //simpleStorage.set('lastPoint.eventKey', point.eventKey);
+        //simpleStorage.set('lastPoint.url', point.url);
+
+        $.ajax({
+            async: false,
+            type: 'POST',
+            url: 'http://localhost/point/' + window.location.search,
+            crossDomain: true,
+            dataType: 'json',
+            data: {"point": point},
+            error: function (XMLHttpRequest, textStatus, err) {
+                //console.error(err);
+                //console.error(point);
+            }
+        });
+    };
+
+    /**
+     * Bind an event to this HTML element.
+     * @param pointData
+     */
+    var buryPoint = function (element, pointData) {
+        if (!pointData.eventKey) throw new Error('No EventKey Be Defined');
+
+        /**
+         * Automatically bind event on this element.
+         */
+        if (pointData.eventKey.indexOf('click') === 0) {
+            // This is the click event.
+            $(element).on('click', function () {
+                sendPoint(pointData);
+            });
+        } else if (pointData.eventKey.indexOf('enter') === 0) {
+            // This is the enter event.
+            pointData.fromUrl = window.location.href;
+            sendPoint(pointData);
+        } else {
+            // This is other event launched by javascript.
+            sendPoint(pointData);
+        }
+    };
+    var document = window.document;
+    $(document).ready(function () {
+        $('[post-point]').each(function (index, element) {
+            var data = $(element).attr('post-point');
+
+            /**
+             * Check if the value is just a string, then use it as eventKey.
+             */
+            if (new RegExp(/[\{\[]/igm).test(data)) {
+                try {
+                    data = JSON.parse(data);
+                } catch (err) {
+                    console.error(err.stack);
+                    console.error('The JSON string is:' + data);
+                }
+            } else {
+                data = {"eventKey": data};
+            }
+
+            if ($.isArray(data)) {
+                for (var i in data) {
+                    buryPoint(element, data[i]);
+                }
+            } else {
+                buryPoint(element, data);
+            }
+        });
+    });
+    postPoint.buryPoint = buryPoint;
+}(jQuery, window);
+
+
+
 //q for sharing platform
 var createShareUrl = function(q){
     var url = ''

@@ -7,8 +7,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
     meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
     // inject:css
     // endinject
-  body.pc
-    #pcluodi
+  body.pc(post-point="enterLandingPage")
+    #pcluodi(style='display:hidden')
       .container
         nav.navbar.navbar-transparent.navbar-static-top
           .navbar-header
@@ -17,9 +17,9 @@ html(xmlns:wb='http://open.weibo.com/wb')
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
               li
-                a(href='http://yangcong345.com/signup') &#x6CE8;&#x518C;
+                a(href='http://yangcong345.com/signup' post-point="clickSignUp") &#x6CE8;&#x518C;
               li
-                a(href='http://yangcong345.com/login') &#x767B;&#x5F55;
+                a(href='http://yangcong345.com/login' post-point="clickLogin") &#x767B;&#x5F55;
       .container.text-inverse
         .topic-information
           img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src='http://yc-course.qiniudn.com/%E6%9C%89%E7%90%86%E6%95%B0%E7%9A%84%E4%B9%98%E6%B3%95.png')
@@ -43,20 +43,20 @@ html(xmlns:wb='http://open.weibo.com/wb')
             ul.nav.navbar-nav
               li#share-label &#x5206;&#x4EAB;
               li
-                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qq")')
+                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareQQ" onclick='createShareUrl("qq")')
                   img.share-logo(src='qq.png')
               li
-                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qzone")')
+                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareQZone" onclick='createShareUrl("qzone")')
                   img.share-logo(src='qzone.png')
               li
-                a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("weibo")')
+                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareWeibo" onclick='createShareUrl("weibo")')
                   img.share-logo(src='weibo.png')
       #bottom-add.bottom-ad.text-inverse
         span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
         a.btn.btn-success(href='http://yangcong345.com') &#x6D0B;&#x8471;&#x6570;&#x5B66;
         a.banner-remove(onclick="$('#bottom-add').remove();")
           .fa.fa-times
-    #mobileluodi
+    #mobileluodi(style='display:hidden')
       .banner
         a.mobile-brand(href='http://m.yangcong345.com')
           img(src='logobeta.png')
@@ -70,13 +70,13 @@ html(xmlns:wb='http://open.weibo.com/wb')
           span &#x5206;&#x4EAB;&#x7ED9;&#x5176;&#x4ED6;&#x5C0F;&#x4F19;&#x4F34;
           ul
             li
-              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qq")')
+              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQQ' onclick='createShareUrl("qq")')
                 img.share-logo(src='qq.png')
             li
-              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("qzone")')
+              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQZone' onclick='createShareUrl("qzone")')
                 img.share-logo(src='qzone.png')
             li
-              a.switch-sharing(href='javascript: void(0)', onclick='createShareUrl("weibo")')
+              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareWeibo' onclick='createShareUrl("weibo")')
                 img.share-logo(src='weibo.png')
       a#footer-url(href='http://m.yangcong345.com')
         .mobile-footer

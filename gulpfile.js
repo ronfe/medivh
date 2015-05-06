@@ -22,7 +22,7 @@ misc.push('./assets/seed.css');
 var em = bowerDir + '/mediaelement/build/';
 misc = misc.concat([em + '*.svg', em + '*.gif', em + '*.png']); // mediaelement
 var asset = './assets/'
-misc = misc.concat([asset + '*.css', asset+ '*.ico', asset + '*.eot', asset + '*.svg', asset + '*.woff', asset + '*.woff2', asset + '*.png'])
+misc = misc.concat([asset + '*.css', asset+ '*.ico', asset + '*.js', asset + '*.eot', asset + '*.svg', asset + '*.woff', asset + '*.woff2', asset + '*.png'])
 
 var DEBUG = 'build'
 var RELEASE = 'bin'
@@ -86,7 +86,7 @@ var index = function (folder) {
         .pipe(gulp.dest(folder))
         .pipe(plugins.filesize())
         .on('error', plugins.util.log);
-}
+};
 
 gulp.task('build_index', ['build_copy'], function () {
     return index(DEBUG);
