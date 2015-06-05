@@ -15,7 +15,8 @@ exports.traverse = function (mongoose, cb) {
         name: String,
         topics: [
             {type: ObjectId}
-        ]
+        ],
+        icon: String
     }));
     var Topic = mongoose.model('Topic', new Schema({
         name: String,
@@ -44,6 +45,19 @@ exports.traverse = function (mongoose, cb) {
     Publisher.findOne({name: '人民教育出版社'}, function (err, publisher) {
         Chapter.find({_id: {$in: publisher.chapters}}, function (err, chapters) {
             async.each(chapters, function (chapter, callback) {
+                Video.find({_id: chapter._doc.guideVideo}, function(err, gv){
+                    if (gv[0]){
+                        target.push({
+                            chapter: chapter.name,
+                            topic: "章节引入",
+                            topicIcon: "guide.png",
+                            task: "guide",
+                            activity: chapter.name + '的引入',
+                            actThumbnail: chapter.icon,
+                            video: gv[0].url
+                        });
+                    }
+                });
                 Topic.find({_id: {$in: chapter.topics}}, function (err, topics) {
                     async.each(topics, function (topic, callback) {
                         Task.find({_id: {$in: topic.tasks}}, function (err, tasks) {
@@ -56,7 +70,7 @@ exports.traverse = function (mongoose, cb) {
                                                     activity: activity.name, actThumbnail: activity._doc.thumbnail, video: video.url});
                                             });
                                             callback();
-                                        })
+                                        });
                                     }, callback);
                                 });
                             }, callback);
