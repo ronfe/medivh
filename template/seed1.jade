@@ -24,7 +24,8 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 a(href='http://yangcong345.com/login' post-point="clickLandingPageLogin") &#x767B;&#x5F55;
       .container.text-inverse
         .topic-information
-          img.topic-unlock(src=topicIcon)
+
+          img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src=topicIcon)
           case task
             when 'guide'
               span.topic-describe [引入] #{chapter} &gt; #{activity}
