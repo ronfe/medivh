@@ -16,7 +16,8 @@ exports.traverse = function (mongoose, cb) {
         topics: [
             {type: ObjectId}
         ],
-        icon: String
+        icon: String,
+        guideVideo: String
     }));
     var Topic = mongoose.model('Topic', new Schema({
         name: String,
@@ -45,8 +46,9 @@ exports.traverse = function (mongoose, cb) {
     Publisher.findOne({name: '人民教育出版社'}, function (err, publisher) {
         Chapter.find({_id: {$in: publisher.chapters}}, function (err, chapters) {
             async.each(chapters, function (chapter, callback) {
-                Video.find({_id: chapter._doc.guideVideo}, function(err, gv){
+                Video.find({_id: chapter.guideVideo}, function(err, gv){
                     if (gv[0]){
+                    //In case of undefined or null guide videos
                         target.push({
                             chapter: chapter.name,
                             topic: "章节引入",
