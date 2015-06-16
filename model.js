@@ -15,6 +15,15 @@ exports.traverse = function (mongoose, cb) {
         // ]
     }, { collection: 'publishers' }));
 
+    var CVGrade = mongoose.model('CVGrade', new Schema({
+        cv: {type: ObjectId},
+        grade: {type: ObjectId},
+        chapters: [{
+            type: ObjectId,
+            ref: 'Chapter'
+        }]
+    }, {collection: 'cvgrades'}));
+
     var Grade = mongoose.model('Grade', new Schema({
         name: String,
         chapters: [
@@ -24,12 +33,15 @@ exports.traverse = function (mongoose, cb) {
 
     var Chapter = mongoose.model('Chapter', new Schema({
         name: String,
-        topics: [
-            {type: ObjectId}
+        icourses: [
+            {
+                topic: { type: ObjectId}
+            }
         ],
+        state: String,
         icon: String,
         guideVideo: String
-    }));
+    }, {collection: 'chapters'}));
     var Topic = mongoose.model('Topic', new Schema({
         name: String,
         tasks: [
@@ -54,49 +66,83 @@ exports.traverse = function (mongoose, cb) {
     }));
 
     var target = [];
-    Publisher.findOne({name: '人教版'}, function (err, publisher) {
-        Grade.find({_id: {$in: publisher.grades}}, function(err, grades){
-            async.each(grades, function(grade, callback){
-                Chapter.find({_id: {$in: grade.chapters}}, function (err, chapters) {
-                    async.each(chapters, function (chapter, callback) {
-                        Video.find({_id: chapter._doc.guideVideo}, function(err, gv){
-                            if (gv[0]){
-                                target.push({
-                                    chapter: chapter.name,
-                                    topic: "章节引入",
-                                    topicIcon: "guide.png",
-                                    task: "guide",
-                                    activity: chapter.name + '的引入',
-                                    actThumbnail: chapter.icon,
-                                    video: gv[0].url
-                                });
-                            }
-                        });
-                        Topic.find({_id: {$in: chapter.topics}}, function (err, topics) {
-                            async.each(topics, function (topic, callback) {
-                                Task.find({_id: {$in: topic.tasks}}, function (err, tasks) {
-                                    async.each(tasks, function (task, callback) {
-                                        Activity.find({_id: {$in: task.activities}}, function (err, activities) {
-                                            async.each(activities, function (activity, callback) {
-                                                Video.find({_id: {$in: activity.videos}, type: 'main'}, function (err, videos) {
-                                                    _.forEach(videos, function (video) {
-                                                        target.push({chapter: chapter.name, topic: topic.name, topicIcon: topic._doc.icon, task: task.type,
-                                                            activity: activity.name, actThumbnail: activity._doc.thumbnail, video: video.url});
-                                                    });
-                                                    callback();
-                                                });
-                                            }, callback);
-                                        });
-                                    }, callback);
-                                });
-                            }, callback);
-                        });
-                    }, function () {
-                        cb(target);
-                    });
-                });
-            });
-        });
 
+    var populateGeneralInfo = function(cpt, cb){
+        async.each(cpt.icourses, function(icourse, callback){
+            // Topic.findOne({_id: icourse.topic}, function(err, topic){
+            //     Task.find({_id: {$in: topic.tasks}}, function(err, tasks){
+            //         async.each(tasks, function(task, callback){
+            //             // Activity.find({_id: {$in: task.activities}}, function(err, activities){
+            //             //     async.each(activities, function(activity, callback){
+            //             //         // Video.find({_id: {$in: activity.videos}}, function(err, videos){
+            //             //         //     _.forEach(videos, function (video) {
+            //             //         //         target.push({chapter: cpt.name, topic: topic.name, topicIcon: topic._doc.icon, task: task.type,
+            //             //         //             activity: activity.name, actThumbnail: activity._doc.thumbnail, video: video.url});
+            //             //         //     });
+            //             //         //     console.log(target);
+            //             //         //     callback();
+            //             //         // });
+            //             //
+            //             //     }, cb);
+            //             // });
+            //
+            //         }, cb);
+            //     });
+            // });
+            console.log(icourse);
+            callback();
+        }, cb);
+    }
+
+    Publisher.findOne({name: '人教版'}, function(err, publisher){
+        var publisherId = publisher._id;
+        CVGrade.find({cv: publisherId}, function(err, grades){
+            async.each(grades, function(grade, callback){
+                grade.populate('chapters', function(err, populatedGrades){
+                    async.each(populatedGrades.chapters, function(chapter, callback){
+                        if (chapter.state === 'published' || chapter.state === 'updating'){
+                            Video.findOne({_id: chapter.guideVideo}, function(err, gv){
+                                if (gv !== null){
+                                    target.push({
+                                        chapter: chapter.name,
+                                        topic: '章节引入',
+                                        topicIcon: 'guide.png',
+                                        task: 'guide',
+                                        activity: chapter.name + '的引入',
+                                        actThumbnail: chapter.icon,
+                                        video: gv.url
+                                    });
+                                }
+                            });
+                            async.each(chapter.icourses, function(icourse, callback){
+                                Topic.find({_id: icourse.topic}, function (err, topics) {
+                                    async.each(topics, function (topic, callback) {
+                                        Task.find({_id: {$in: topic.tasks}}, function (err, tasks) {
+                                            async.each(tasks, function (task, callback) {
+                                                Activity.find({_id: {$in: task.activities}}, function (err, activities) {
+                                                    async.each(activities, function (activity, callback) {
+                                                        Video.find({_id: {$in: activity.videos}, type: 'main'}, function (err, videos) {
+                                                            _.forEach(videos, function (video) {
+                                                                target.push({chapter: chapter.name, topic: topic.name, topicIcon: topic._doc.icon, task: task.type,
+                                                                    activity: activity.name, actThumbnail: activity._doc.thumbnail, video: video.url});
+                                                                });
+                                                                callback();
+                                                            });
+                                                        }, callback);
+                                                    });
+                                                }, callback);
+                                            });
+                                        }, callback);
+                                    });
+                            }, callback);
+                        }
+                        else{
+                            callback();
+                        }
+                    }, callback);
+                });
+
+            }, function(){ console.log(target); cb(target);});
+        });
     });
 }
