@@ -58,10 +58,11 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareWeibo" onclick='createShareUrl("weibo")')
                   img.share-logo(src='weibo.png')
       #bottom-add.bottom-ad.text-inverse
-        span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
-        a.btn.btn-success(href='http://yangcong345.com' post-point="clickLandingJump") &#x6D0B;&#x8471;&#x6570;&#x5B66;
-        a.banner-remove(onclick="$('#bottom-add').remove();")
-          .fa.fa-times
+        .ad-text
+          span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
+          a.btn.btn-success(href='http://yangcong345.com' post-point="clickLandingJump") &#x6D0B;&#x8471;&#x6570;&#x5B66;
+          a.banner-remove(onclick="$('#bottom-add').remove();")
+            .fa.fa-times.lg-exit
     #mobileluodi(style='display:none')
       .banner
         a.mobile-brand(href='http://m.yangcong345.com')

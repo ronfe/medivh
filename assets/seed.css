@@ -2,6 +2,11 @@ html {
     height: 100%;
 }
 
+.ad-text {
+    font-size: 1.8em;
+    padding-top: 1.4em;
+}
+
 .banner {
     width: 100%;
     height: 4em;
@@ -19,11 +24,12 @@ html {
 .bottom-ad {
     position: fixed;
     bottom: 0;
-    background-color: #3f81b7;
+    left: 0;
+    background: url(./footer_layer_bg.png);
     width: 100%;
-    height: 50px;
+    height: 117px;
+    z-index: 1000;
     text-align: center;
-    padding-top: 10px;
 }
 
 .bottom-ad span {
@@ -42,6 +48,11 @@ html {
     background-color: #000;
     overflow: hidden;
     margin-top: 40px;
+}
+
+.lg-exit {
+    font-size: 30px;
+    margin-right: 20px;
 }
 
 .mobile-luodi {
