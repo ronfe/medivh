@@ -1,6 +1,6 @@
 {
     "db": {
-      "host": "192.168.3.100",
+      "host": "10.8.3.43",
       "name": "matrix-yangcong-prod"
     }
 }
