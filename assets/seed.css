@@ -39,6 +39,7 @@ html {
 
 .download-guide {
     text-decoration: underline;
+    color: #3498db;
 }
 
 .hyper-zone {
@@ -60,6 +61,22 @@ html {
     height: 100%;
 }
 
+.mobile-banner {
+    text-decoration: none;
+}
+
+.mobile-banner:focus {
+    text-decoration: none;
+}
+
+.mobile-banner-remove {
+    float: left;
+    vertical-align: middle;
+    padding-top: 0.2em;
+    margin-left: 1.5em;
+    color: gray;
+}
+
 .mobile-brand {
     padding: 0.5em 0 0 10%;
 }
@@ -70,13 +87,17 @@ html {
 }
 
 .mobile-footer {
-    bottom: 0;
-    background-color: #656565;
+    background-color: #DCDCDC;
     width: 100%;
-    height: 4em;
-    text-align: center;
-    position: fixed;
-    padding-top: 1.5em;
+    height: 6em;
+    text-align: left;
+    padding-top: 2.25em;
+}
+
+#mobile-guide {
+    color: black;
+    float: left;
+    font-size: 1.2em;
 }
 
 .mobile-hyper-zone {
@@ -94,9 +115,9 @@ html {
 
 .mobile-logo {
 
-    float: center;
-    margin-top: -0.5em;
-    /*padding-left: 10%;*/
+    float: left;
+    margin-top: -1em;
+    padding-left: 5%;
 }
 
 .mobile-logo img {
@@ -293,6 +314,12 @@ html {
     position: relative;
     font-size: 14px;
     color: #c2d0dc;
+}
+
+#yangcong-logo {
+    width: 3.5em;
+    height: 3.5em;
+    float: left;
 }
 
 #video-list {

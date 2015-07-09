@@ -227,8 +227,8 @@ if (bowser.android) {
     else {
         var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk';
     }
-    $('#yangcong-logo').after('<span id="mobile-guide" class="text-inverse">&#x4E0B;&#x8F7D;<span class="download-guide">&#x6D0B;&#x8471;&#x6570;&#x5B66;</span>&#xFF0C;&#x770B;&#x66F4;&#x591A;&#x4F18;&#x8D28;&#x521D;&#x4E2D;&#x89C6;&#x9891;</span></div>');
-    $('#footer-url').attr('href', downloadURL);
+    $('#yangcong-logo').after('<span id="mobile-guide">&#x4E0B;&#x8F7D;<span class="download-guide">&#x6D0B;&#x8471;&#x6570;&#x5B66;</span><br >&#x770B;&#x66F4;&#x591A;&#x4F18;&#x8D28;&#x521D;&#x4E2D;&#x89C6;&#x9891;</span></div>');
+    $('.mobile-banner').attr('href', downloadURL);
     $('#yangcong-logo').attr('src', 'yangcong.png');
 }
 else if (bowser.ios) {

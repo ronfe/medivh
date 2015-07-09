@@ -65,6 +65,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
           a.banner-remove(onclick="$('#bottom-add').remove();")
             .fa.fa-times.lg-exit
     #mobileluodi(style='display:none')
+      .mobile-footer
+        .mobile-remove
+          .mobile-banner-remove(onclick="$('.mobile-footer').remove();").fa.fa-times
+        a.mobile-banner
+          .mobile-logo
+            img#yangcong-logo
       .banner
         a.mobile-brand(href='http://m.yangcong345.com')
           img(src='logobeta.png')
@@ -86,9 +92,6 @@ html(xmlns:wb='http://open.weibo.com/wb')
             li
               a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareWeibo' onclick='createShareUrl("weibo")')
                 img.share-logo(src='weibo.png')
-      a#footer-url(href='http://m.yangcong345.com')
-        .mobile-footer
-          .mobile-logo
-            img#yangcong-logo
+
       // inject:js
       // endinject
