@@ -1,6 +1,6 @@
 {
-    "db": {
-        "host": "192.168.3.100",
-        "name": "matrix-yangcong-prod"
-    }
+  "db": {
+    "host": "Mongo-pri",
+    "name": "test25"
+  }
 }
