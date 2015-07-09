@@ -1,7 +1,7 @@
 var async = require('async');
 var _ = require('lodash');
 
-exports.traverse = function(mongoose, cb){
+exports.traverse = function (mongoose, cb) {
     var Schema = mongoose.Schema;
     var ObjectId = Schema.Types.ObjectId;
 
@@ -13,7 +13,7 @@ exports.traverse = function(mongoose, cb){
 
     var Cvgrade = mongoose.model('Cvgrade', new Schema({
         cv: {type: ObjectId},
-        chapters: [ {type: ObjectId} ]
+        chapters: [{type: ObjectId}]
     }, {
         collection: 'cvgrades'
     }));
@@ -33,21 +33,21 @@ exports.traverse = function(mongoose, cb){
     var Topic = mongoose.model('Topic', new Schema({
         name: String,
         icon: String,
-        tasks: [ {type: ObjectId} ]
+        tasks: [{type: ObjectId}]
     }, {
         collection: 'topics'
     }));
 
     var Task = mongoose.model('Task', new Schema({
         type: String,
-        activities: [ {type: ObjectId} ]
+        activities: [{type: ObjectId}]
     }, {
         collection: 'tasks'
     }));
 
     var Activity = mongoose.model('Activity', new Schema({
         name: String,
-        videos: [ {type: ObjectId} ],
+        videos: [{type: ObjectId}],
         thumbnail: String
     }, {
         collection: 'activities'
@@ -61,15 +61,20 @@ exports.traverse = function(mongoose, cb){
 
     var target = [];
 
-    Publisher.findOne({name: '人教版'}, function(err, publisher){
-        Cvgrade.find({cv: publisher._id}, function(err, cvGrades){
+    Publisher.findOne({name: '人教版'}, function (err, publisher) {
+        Cvgrade.find({cv: publisher._id}, function (err, cvGrades) {
             // async 1st cvgrades
-            async.each(cvGrades, function(cvGrade, callback){
-                Chapter.find({$or: [{_id: {$in: cvGrade.chapters}, state: 'published'}, {_id: {$in: cvGrade.chapters}, state: 'updating'}]}, function(err, chapters){
+            async.each(cvGrades, function (cvGrade, callback) {
+                Chapter.find({
+                    $or: [{_id: {$in: cvGrade.chapters}, state: 'published'}, {
+                        _id: {$in: cvGrade.chapters},
+                        state: 'updating'
+                    }]
+                }, function (err, chapters) {
                     // async 2nd chapters
-                    async.each(chapters, function(chapter, callback){
-                        Video.find({_id: chapter.guideVideo}, function(err, gv){
-                            if (gv[0]){
+                    async.each(chapters, function (chapter, callback) {
+                        Video.find({_id: chapter.guideVideo}, function (err, gv) {
+                            if (gv[0]) {
                                 target.push({
                                     chapter: chapter.name,
                                     topic: "章节引入",
@@ -83,16 +88,16 @@ exports.traverse = function(mongoose, cb){
                             }
                         });
                         // async 3rd topics/icourses
-                        async.each(chapter.icourses, function(icourse, callback){
-                            Topic.findOne({_id: icourse.topic}, function(err, topic){
-                                Task.find({_id: {$in: topic.tasks}}, function(err, tasks){
+                        async.each(chapter.icourses, function (icourse, callback) {
+                            Topic.findOne({_id: icourse.topic}, function (err, topic) {
+                                Task.find({_id: {$in: topic.tasks}}, function (err, tasks) {
                                     // async 4th tasks
-                                    async.each(tasks, function(task, callback){
-                                        Activity.find({_id: {$in: task.activities}}, function(err, activities){
+                                    async.each(tasks, function (task, callback) {
+                                        Activity.find({_id: {$in: task.activities}}, function (err, activities) {
                                             // async 5th activities
-                                            async.each(activities, function(activity, callback){
-                                                Video.find({_id: {$in: activity.videos}}, function(err, videos){
-                                                    _.forEach(videos, function(video){
+                                            async.each(activities, function (activity, callback) {
+                                                Video.find({_id: {$in: activity.videos}}, function (err, videos) {
+                                                    _.forEach(videos, function (video) {
                                                         target.push({
                                                             chapter: chapter.name,
                                                             topic: topic.name,
@@ -118,7 +123,7 @@ exports.traverse = function(mongoose, cb){
                     }, callback);
                     // end of 2nd async
                 });
-            }, function(){
+            }, function () {
                 cb(target);
             });
             // end of 1st async
