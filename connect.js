@@ -3,8 +3,8 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var config = require('config');
-var model = require('./model');
-var jade = require('./jade')
+var model = require('./newModel');
+var jade = require('./jade');
 
 var app = express();
 
@@ -12,7 +12,7 @@ var app = express();
  * Connect to database.
  */
 // Connect to mongodb
-var db = config.get('db.host') + "/" + config.get('db.name')
+var db = config.get('db.host') + "/" + config.get('db.name');
 mongoose.connect("mongodb://" + db, {
     server: {
         socketOptions: {
@@ -46,4 +46,3 @@ mongoose.connection.on('connected', function () {
     console.info('Database connected to ' + db);
     model.traverse(mongoose, jade.generate);
 });
-
