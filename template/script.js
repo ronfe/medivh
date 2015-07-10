@@ -232,9 +232,7 @@ if (bowser.android) {
     $('#yangcong-logo').attr('src', 'yangcong.png');
 }
 else if (bowser.ios) {
-    if (bowser.safari){
-        $('.mobile-footer').remove();
-    }
+    $('.mobile-footer').remove();
     $('#mobileluodi').removeAttr('style');
     $('#pcluodi').remove();
     $('body').removeClass('pc');
