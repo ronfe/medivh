@@ -233,7 +233,7 @@ if (bowser.android) {
 }
 else if (bowser.ios) {
     if (bowser.safari){
-        $('#mobile-footer').remove();
+        $('.mobile-footer').remove();
     }
     $('#mobileluodi').removeAttr('style');
     $('#pcluodi').remove();
