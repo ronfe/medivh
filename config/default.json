@@ -1,6 +1,6 @@
 {
   "db": {
     "host": "mongo-pri",
-    "name": "yangcong-math-test"
+    "name": "yangcong-prod"
   }
 }
