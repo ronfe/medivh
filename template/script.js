@@ -244,4 +244,11 @@ else if (bowser.ios) {
 }
 else {
     $('#mobileluodi').remove();
+    var signUpURL = 'http://yangcong345.com/signup'
+    if (window.location.search[0] === '?'){
+        $('#signup').attr('href', signUpURL + window.location.search);
+    }
+    else {
+        $('#signup').attr('href', signUpURL);
+    }
 }
