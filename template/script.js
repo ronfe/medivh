@@ -213,14 +213,14 @@ var createShareUrl = function (q) {
     var win = window.open(url, '_blank');
     win.focus();
     //window.location.href= url + "?backurl="+ window.location.href;
-}
+};
 
 if (bowser.android) {
     $('#mobileluodi').removeAttr('style');
     $('#pcluodi').remove();
     $('body').removeClass('pc');
     // $('body').addClass('mobile');
-    if (window.location.search[1] === 'q'){
+    if (window.location.search[1] === 'q') {
         var qudao = window.location.search.split('=')[1]
         var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk?q=' + qudao;
     }
@@ -246,7 +246,7 @@ else {
     $('#mobileluodi').remove();
     var signUpURL = 'http://yangcong345.com/signup';
     var loginURL = 'http://yangcong345.com/login';
-    if (window.location.search[0] === '?'){
+    if (window.location.search[0] === '?') {
         $('#signup').attr('href', signUpURL + window.location.search);
         $('#login').attr('href', loginURL + window.location.search);
     }
