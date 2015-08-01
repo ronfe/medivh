@@ -25,7 +25,7 @@ html {
     position: fixed;
     bottom: 0;
     left: 0;
-    background: url(./footer_layer_bg.png);
+    background: url(../assets/footer_layer_bg.png);
     width: 100%;
     height: 117px;
     z-index: 1000;
@@ -200,13 +200,13 @@ html {
 .pc {
     height: 100%;
     background: #0b4575; /* Old browsers */
-    background-image: url(./web-bg.png); /* in case of fall */
-    background-image: url(./web-bg.png), -moz-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* FF3.6+ */
-    background-image: url(./web-bg.png), -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0b4575), color-stop(70%, #125892), color-stop(100%, #196aaf)); /* Chrome,Safari4+ */
-    background-image: url(./web-bg.png), -webkit-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* Chrome10+,Safari5.1+ */
-    background-image: url(./web-bg.png), -o-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* Opera 11.10+ */
-    background-image: url(./web-bg.png), -ms-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* IE10+ */
-    background-image: url(./web-bg.png), linear-gradient(to bottom, #0b4575 0%, #125892 70%, #196aaf 100%); /* W3C */
+    background-image: url(../assets/web-bg.png); /* in case of fall */
+    background-image: url(../assets/web-bg.png), -moz-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* FF3.6+ */
+    background-image: url(../assets/web-bg.png), -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0b4575), color-stop(70%, #125892), color-stop(100%, #196aaf)); /* Chrome,Safari4+ */
+    background-image: url(../assets/web-bg.png), -webkit-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* Chrome10+,Safari5.1+ */
+    background-image: url(../assets/web-bg.png), -o-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* Opera 11.10+ */
+    background-image: url(../assets/web-bg.png), -ms-linear-gradient(top, #0b4575 0%, #125892 70%, #196aaf 100%); /* IE10+ */
+    background-image: url(../assets/web-bg.png), linear-gradient(to bottom, #0b4575 0%, #125892 70%, #196aaf 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0b4575', endColorstr='#196aaf', GradientType=0); /* IE6-9 */
     background-attachment: fixed;
     background-position: center top;

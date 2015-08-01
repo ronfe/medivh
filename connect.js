@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var config = require('config');
-var model = require('./newModel');
+var model = require('./Model25');
 var jade = require('./jade');
 
 var app = express();

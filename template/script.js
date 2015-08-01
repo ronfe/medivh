@@ -1,8 +1,3 @@
-//Track data
-/**
- * Created by ronfe on 15-5-5.
- */
-
 /**
  * Created by libook on 15-1-22.
  */
@@ -35,7 +30,8 @@ var postPoint = {};
             eventKey: '',
             eventValue: {},
             url: '',
-            header: {}
+            header: {},
+            from: 'pc'
         };
 
         /**
@@ -45,15 +41,11 @@ var postPoint = {};
         point.url = window.location.pathname + window.location.hash;
         // EventValue.
         point.eventValue.fromUrl = window.location.pathname + window.location.hash;
-        // point.eventValue.preEventKey = simpleStorage.get('lastPoint.eventKey');
+        point.eventValue.preEventKey = simpleStorage.get('lastPoint.eventKey');
         // Header.
         +function () {
-            var tempQudao = window.location.search;
-            if (tempQudao !== '') {
-                tempQudao = tempQudao.match(/(?:q\=).+/)[0].slice(2);
-            }
-            var q = tempQudao;
-            if (q !== undefined || null) {
+            var q = simpleStorage.get('q');
+            if (q !== undefined) {
                 if (point.header === undefined) {
                     point.header = {};
                 }
@@ -96,16 +88,15 @@ var postPoint = {};
         /**
          * Save this point as lastPoint in simpleStorage.
          */
-            //simpleStorage.set('lastPoint.eventKey', point.eventKey);
-            //simpleStorage.set('lastPoint.url', point.url);
+        simpleStorage.set('lastPoint.eventKey', point.eventKey);
+        simpleStorage.set('lastPoint.url', point.url);
 
         $.ajax({
             async: false,
             type: 'POST',
             url: 'http://yangcong345.com/point/' + window.location.search,
-            crossDomain: true,
             dataType: 'json',
-            data: {"point": point},
+            data: {"points": [point]},
             error: function (XMLHttpRequest, textStatus, err) {
                 //console.error(err);
                 //console.error(point);
@@ -130,7 +121,7 @@ var postPoint = {};
             });
         } else if (pointData.eventKey.indexOf('enter') === 0) {
             // This is the enter event.
-            pointData.fromUrl = window.location.href;
+            pointData.fromUrl = simpleStorage.get('lastPoint.url');
             sendPoint(pointData);
         } else {
             // This is other event launched by javascript.
@@ -167,6 +158,42 @@ var postPoint = {};
     });
     postPoint.buryPoint = buryPoint;
 }(jQuery, window);
+
+/**
+ * This is for saving 'q' code into simpleStorage.
+ */
++function () {
+    function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+
+    var q = getUrlParameter('q');
+    console.log(q);
+    if (q !== undefined) {
+        simpleStorage.set('q', q);
+    }
+    window.getUrlParameter = getUrlParameter;
+}();
+
+/**
+ * Created by ronfe on 15-5-5.
+ */
+
+(function () {
+    var q = simpleStorage.get('q');
+    var domain = 'http://yangcong345.com/';
+    $('#signup').href = domain + 'signup' + '?q=' + q;
+    $('#login').href = domain + 'login' + '?q=' + q;
+    $('#mainpage')[0].href = domain + '?q=' + q;
+    $('#nav')[0].href = domain + '?q=' + q;
+}());
 
 
 //q for sharing platform

@@ -1,6 +1,6 @@
 {
   "db": {
-    "host": "mongo-pri",
-    "name": "yangcong-prod"
+    "host": "10.8.8.8",
+    "name": "trans25"
   }
 }
