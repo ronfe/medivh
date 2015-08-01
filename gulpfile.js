@@ -97,7 +97,7 @@ gulp.task('build_copy', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: /.*\.((?!less|css|js).)*$/i
-    }).concat('assets/*'))
+    }).concat('assets/*').concat('out/*.html'))
         .pipe(gulp.dest(DEBUG))
         .on('error', plugins.util.log);
 });
@@ -106,13 +106,13 @@ gulp.task('bin_copy', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: /.*\.((?!less|css|js).)*$/i
-    }).concat('assets/*'))
+    }).concat('assets/*').concat('out/*.html'))
         .pipe(gulp.dest(RELEASE))
         .on('error', plugins.util.log);
 });
 
 gulp.task('build_index', ['build_copy', 'build_css', 'build_js'], function () {
-    var target = './out/*.html';
+    var target = DEBUG + '/*.html';
     var sources = gulp.src([DEBUG + '/*.js', DEBUG + '/*.css'], {read: false});
     return gulp.src(target)
         .pipe(plugins.inject(sources, {relative: true}))
@@ -122,7 +122,7 @@ gulp.task('build_index', ['build_copy', 'build_css', 'build_js'], function () {
 });
 
 gulp.task('bin_index', ['bin_copy', 'bin_css', 'bin_js'], function () {
-    var target = './out/*.html';
+    var target = RELEASE + '/*.html';
     var sources = gulp.src([RELEASE + '/*.js', RELEASE + '/*.css'], {read: false});
     return gulp.src(target)
         .pipe(plugins.inject(sources, {relative: true}))
