@@ -97,6 +97,10 @@ var postPoint = {};
             url: 'http://yangcong345.com/point/' + window.location.search,
             dataType: 'json',
             data: {"points": [point]},
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
             error: function (XMLHttpRequest, textStatus, err) {
                 //console.error(err);
                 //console.error(point);
