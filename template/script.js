@@ -189,10 +189,12 @@ var postPoint = {};
 (function () {
     var q = simpleStorage.get('q');
     var domain = 'http://yangcong345.com/';
-    $('#signup').href = domain + 'signup' + '?q=' + q;
-    $('#login').href = domain + 'login' + '?q=' + q;
-    $('#mainpage')[0].href = domain + '?q=' + q;
-    $('#nav')[0].href = domain + '?q=' + q;
+    if(q) {
+        $('#signup').href = domain + 'signup' + '?q=' + q;
+        $('#login').href = domain + 'login' + '?q=' + q;
+        $('#mainpage')[0].href = domain + '?q=' + q;
+        $('#nav')[0].href = domain + '?q=' + q;
+    }
 }());
 
 
