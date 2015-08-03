@@ -104,7 +104,6 @@ html {
     max-width: 100%;
     /*display: inline-block;*/
     float: left;
-    background-color: #000;
     overflow: hidden;
 }
 
@@ -136,7 +135,7 @@ html {
 .mobile-sharing span {
     font-size: 1em;
     color: #dcdcdc;
-    padding-left: 10%;
+    padding-left: 5%;
 }
 
 .mobile-sharing ul {
@@ -144,7 +143,7 @@ html {
     position: inline;
     list-style-type: none;
     border: none;
-    margin-right: 10%;
+    margin-right: 5%;
 }
 
 .mobile-sharing ul li {
