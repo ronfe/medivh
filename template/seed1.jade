@@ -1,98 +1,84 @@
 doctype html
 html(xmlns:wb='http://open.weibo.com/wb')
-  head
-    meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
-    title #{activity} - 洋葱数学
-    meta(charset='utf8')
-    meta(name="apple-itunes-app" content="app-id=990959871, app-argument=https://itunes.apple.com/gb/app/yang-cong-shu-xue/id990959871?l=zh&ls=1&mt=8")
-    meta(name='keywords', content='洋葱数学，初中数学，数学，数学学习，微课，微视频，翻转课堂')
-    meta(name='description' content='洋葱数学让每个学生“一学就懂”！将趣味短视频与习题结合，轻松进行个性化在线学习，每天5分钟，赶快体验！')
-    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
-    meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
-    // inject:css
-    // endinject
-  body.pc(post-point="enterLandingPage")
-    #pcluodi
-      .container
-        nav.navbar.navbar-transparent.navbar-static-top
-          .navbar-header
-            a#nav.navbar-brand(href='http://yangcong345.com' post-point="clickLandingYCLogo")
-              img(src='logobeta.png')
-          .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-              li
-                a#signup(href='http://yangcong345.com/signup' post-point="clickLandingPageSignUp") &#x6CE8;&#x518C;
-              li
-                a#login(href='http://yangcong345.com/login' post-point="clickLandingPageLogin") &#x767B;&#x5F55;
-      .container.text-inverse
-        .topic-information
+    head
+        meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+        title #{activity}
+        meta(charset='utf8')
+        meta(name='keywords', content='洋葱数学，初中数学，数学，数学学习，微课，微视频，翻转课堂')
+        meta(name='description' content='洋葱数学让每个学生“一学就懂”！将趣味短视频与习题结合，轻松进行个性化在线学习，每天5分钟，赶快体验！')
+        link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+        meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
+        // inject:css
+        // endinject
+    body.pc(post-point="enterLandingPage")
+        #pcluodi
+            .container.head-container
+                nav.navbar.navbar-static-top
+                    .navbar-header
+                        a.navbar-brand(href='http://yangcong345.com' post-point="clickLandingYCLogo")
+                            img(src='07_Logo.svg')
+                    .collapse.navbar-collapse
+                        ul.nav.navbar-nav.navbar-right
+                            li
+                                a#signup(href='http://yangcong345.com/signup' post-point="clickLandingPageSignUp") &#x6CE8;&#x518C;
+                            li
+                                a#login(href='http://yangcong345.com/login' post-point="clickLandingPageLogin") &#x767B;&#x5F55;
 
-          img.topic-unlock.topic-icon-no-shadow.topic-icon-in-task(src=topicIcon)
-          case task
-            when 'guide'
-              span.topic-describe [引入] #{chapter} &gt; #{activity}
-            when 'elementary'
-              span.topic-describe [基础] #{chapter} &gt; #{activity}
-            when 'challenge'
-              span.topic-describe [挑战] #{chapter} &gt; #{activity}
-            when 'advanced'
-              span.topic-describe [提高] #{chapter} &gt; #{activity}
+            .video-zone
+                .video-info
+                    .topic-logo
+                        img(src=topicIcon)
+                    .topic-info
+                        .topic-name #{chapter}
+                        .activity-name #{activity}
+                    .share-zone
+                        .share-label 分享
+                        #share-qq.share-icon(onclick="createShareUrl('qq', '#{task}', '#{topicDesc}')",post-point="clickLandingShareQQ")
+                            img(src='mobile-qq.png')
+                        #share-qzone.share-icon(onclick="createShareUrl('qzone', '#{task}', '#{topicDesc}')",post-point="clickLandingShareQzone")
+                            img(src='mobile-qzone.png')
+                        #share-weibo.share-icon(onclick="createShareUrl('weibo', '#{task}', '#{topicDesc}')",post-point="clickLandingShareWeibo")
+                            img(src='mobile-weibo.png')
+                .video-player
+                    video.mejs-player(src=video, width='100%', height='100%', controls='controls', autoplay='')
+            .intro-zone
+                img(src='sideimg.png')
+                .intro-text 看动画，也是学数学
+                .intro-text 打游戏，也是做练习
+                .redirect-btn 更多免费视频
+            .bottom-bg(post-point="clickBottomBackgroundLogin",href="http://yangcong345.com/login")
+        #mobileluodi(style='display: none')
+            .mobile-banner
+                .mobile-logo
+                    img(src="mobile-logo.png")
+                .mobile-slogan 让数学变简单
+            .mobile-hyper-zone
+                //video#mobile-video(src=video, onplay='$(".mejs-fullscreen-button").click();', poster=actThumbnail, width='100%')
+                video#mobile-video(src=video, poster=actThumbnail, post-point='{"eventKey": "clickLandingShareVideoZone", "fromMobile": 1}' , width='100%')
+                .mobile-title
+                    span #{activity}
+                .mobile-sharing
+                    .sharing-text
+                        span 分享给小伙伴
+                    ul
+                        li
+                            a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQQ' onclick='createShareUrl("qq", "#{task}", "#{topicDesc}")')
+                                img.share-logo(src='mobile-qq.png')
+                        li
+                            a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQZone' onclick='createShareUrl("qzone", "#{task}", "#{topicDesc}")')
+                                img.share-logo(src='mobile-qzone.png')
+                        li
+                            a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareWeibo' onclick='createShareUrl("weibo", "#{task}", "#{topicDesc}")')
+                                img.share-logo(src='mobile-weibo.png')
+            .mobile-bottom
+                .mobile-app-icon
+                    img(src="mobile-appicon.png")
+                .mobile-app-text
+                    .mobile-app-main-text 下载 洋葱数学
+                    .mobile-app-assist-text 看更多优质初中视频
+                .mobile-app-download(onclick="redirectDownloadApp()",post-point='clickMobileDownloadBtn') 下载应用
 
-      .task-hyper-area.text-inverse
-        .hyper-zone
-          video.mejs-player(src=video, width='850px', autoplay='')
-        .video-list-area
-          #video-list
-            #video-thumbnail.waiting-video.text-center.video-thumbnail(style='background-image: URL(#{actThumbnail});' thumbnail=actThumbnail)
-            .text-center.thumbnail-float
-              span.fa.fa-play-circle
-              |                    #{activity}
-          #video-sharing-zone
-            ul.nav.navbar-nav
-              li#share-label &#x5206;&#x4EAB;
-              li
-                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareQQ" onclick='createShareUrl("qq")')
-                  img.share-logo(src='qq.png')
-              li
-                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareQZone" onclick='createShareUrl("qzone")')
-                  img.share-logo(src='qzone.png')
-              li
-                a.switch-sharing(href='javascript: void(0)', post-point="clickLandingShareWeibo" onclick='createShareUrl("weibo")')
-                  img.share-logo(src='weibo.png')
-      #bottom-add.bottom-ad.text-inverse
-        .ad-text
-          span &#x66F4;&#x591A;&#x521D;&#x4E2D;&#x4F18;&#x8D28;&#x89C6;&#x9891;&#x5C3D;&#x5728;
-          a#mainpage.btn.btn-success(href='http://yangcong345.com' post-point="clickLandingJump") &#x6D0B;&#x8471;&#x6570;&#x5B66;
-          a.banner-remove(onclick="$('#bottom-add').remove();")
-            .fa.fa-times.lg-exit
-    #mobileluodi(style='display:none')
-      .mobile-footer
-        .mobile-remove
-          .mobile-banner-remove(onclick="$('.mobile-footer').remove();").fa.fa-times
-        a.mobile-banner
-          .mobile-logo
-            img#yangcong-logo
-      .banner
-        a.mobile-brand(href='http://m.yangcong345.com')
-          img(src='logobeta.png')
-        .text-inverse.mobile-text-right
-          span &#x79D1;&#x5B66;&#x9884;&#x4E60;&#x795E;&#x5668;
-      .mobile-hyper-zone
-        video#mobile-video.mejs-player(src=video, onplay='$(".mejs-fullscreen-button").click();', poster=actThumbnail, width='100%')
-        .mobile-title
-          span #{chapter}&#xFF0C;#{activity}
-        .mobile-sharing
-          span &#x5206;&#x4EAB;&#x7ED9;&#x5176;&#x4ED6;&#x5C0F;&#x4F19;&#x4F34;
-          ul
-            li
-              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQQ' onclick='createShareUrl("qq")')
-                img.share-logo(src='qq.png')
-            li
-              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareQZone' onclick='createShareUrl("qzone")')
-                img.share-logo(src='qzone.png')
-            li
-              a.switch-sharing(href='javascript: void(0)', post-point='clickLandingShareWeibo' onclick='createShareUrl("weibo")')
-                img.share-logo(src='weibo.png')
 
-      // inject:js
-      // endinject
+
+        // inject:js
+        // endinject

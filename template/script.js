@@ -159,8 +159,23 @@ var postPoint = {};
                 buryPoint(element, data);
             }
         });
+        postPoint.buryPoint = buryPoint;
+        var videoPlayer = new MediaElementPlayer('#mobile-video', {
+            iPadUseNativeControls: false,
+            // force iPhone's native controls
+            iPhoneUseNativeControls: false,
+            // force Android's native controls
+            AndroidUseNativeControls: false,
+            success: function (vP, dO) {
+                vP.addEventListener('play', function () {
+                    postPoint.buryPoint('#mobile-video', {"eventKey": "playLandingShareVideo", "fromMobile": 1});
+                });
+                vP.addEventListener('pause', function () {
+                    postPoint.buryPoint('#mobile-video', {"eventKey": "pauseLandingShareVideo", "fromMobile": 1});
+                });
+            }
+        });
     });
-    postPoint.buryPoint = buryPoint;
 }(jQuery, window);
 
 /**
@@ -193,7 +208,7 @@ var postPoint = {};
 (function () {
     var q = simpleStorage.get('q');
     var domain = 'http://yangcong345.com/';
-    if(q) {
+    if (q) {
         $('#signup').href = domain + 'signup' + '?q=' + q;
         $('#login').href = domain + 'login' + '?q=' + q;
         $('#mainpage')[0].href = domain + '?q=' + q;
@@ -203,15 +218,26 @@ var postPoint = {};
 
 
 //q for sharing platform
-var createShareUrl = function (q) {
+var createShareUrl = function (q, videoType, topicDesc) {
     var url = '';
+    var templateScript = '';
+
+    if (videoType === 'guide') {
+        templateScript = '【' + document.title + '】';
+    }
+    else if (videoType === 'elementary') {
+        templateScript = '【提分秘籍：' + document.title + '】';
+    }
+    else if (videoType === 'advanced') {
+        templateScript = '【进阶必备：' + document.title + '】';
+    }
     switch (q) {
         case 'qq':
             var p = {
                 url: location.href,
-                desc: '我在洋葱数学预习了' + document.title + '，轻松搞笑，知识讲解秒懂！不怕老师上课提问了～',
+                desc: templateScript,
                 title: '洋葱数学',
-                summary: '洋葱数学：科学预习神器',
+                summary: '洋葱数学：让数学更简单',
                 pics: $('#video-thumbnail').attr('thumbnail')
             };
             var s = [];
@@ -226,9 +252,9 @@ var createShareUrl = function (q) {
             var p = {
                 url: location.href,
                 showcount: '0',
-                desc: '我在洋葱数学预习了' + document.title + '，轻松搞笑，知识讲解秒懂！不怕老师上课提问了～',
-                summary: '洋葱数学：科学预习神器',
-                title: '洋葱数学',
+                desc: templateScript + '（分享@洋葱数学）',
+                summary: topicDesc,
+                title: templateScript,
                 pics: $('#video-thumbnail').attr('thumbnail')
             };
             var s = [];
@@ -240,7 +266,7 @@ var createShareUrl = function (q) {
             break;
         case 'weibo':
             //url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&amp;type=button&amp;language=zh_cn&amp;appkey=1623791526&amp;searchPic=false&amp;style=simple';
-            url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + '我在洋葱数学预习了' + document.title + '，轻松搞笑，知识讲解秒懂！不怕老师上课提问了～' + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
+            url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + templateScript + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
             break;
     }
     var win = window.open(url, '_blank');
@@ -248,8 +274,32 @@ var createShareUrl = function (q) {
     //window.location.href= url + "?backurl="+ window.location.href;
 };
 
+$('#share-qq').mouseover(function () {
+    $('#share-qq img').attr('src', 'qq_hover.png');
+});
+$('#share-qq').mouseleave(function () {
+    $('#share-qq img').attr('src', 'mobile-qq.png');
+});
+$('#share-qzone').mouseover(function () {
+    $('#share-qzone img').attr('src', 'qzone_hover.png');
+});
+$('#share-qzone').mouseleave(function () {
+    $('#share-qzone img').attr('src', 'mobile-qzone.png');
+});
+$('#share-weibo').mouseover(function () {
+    $('#share-weibo img').attr('src', 'weibo_hover.png');
+});
+$('#share-weibo').mouseleave(function () {
+    $('#share-weibo img').attr('src', 'mobile-weibo.png');
+});
+
+// Used for mobile users click download app button
+var redirectDownloadApp = function () {
+    window.location = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.yangcong345.android.phone';
+};
+
 if (bowser.android) {
-    $('#mobileluodi').removeAttr('style');
+    $('#mobileluodi').show();
     $('#pcluodi').remove();
     $('body').removeClass('pc');
     // $('body').addClass('mobile');
@@ -266,7 +316,7 @@ if (bowser.android) {
 }
 else if (bowser.ios) {
     $('.mobile-footer').remove();
-    $('#mobileluodi').removeAttr('style');
+    $('#mobileluodi').show();
     $('#pcluodi').remove();
     $('body').removeClass('pc');
     // $('body').addClass('mobile');

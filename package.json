@@ -35,7 +35,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
-    "html2jade": "^0.8.3",
+    "html2jade": "^0.8.4",
     "jade": "^1.9.2",
     "lodash": "^3.5.0",
     "main-bower-files": "^2.6.2",

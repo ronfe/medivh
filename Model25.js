@@ -33,6 +33,7 @@ exports.traverse = function (mongoose, cb) {
     var Topic = mongoose.model('Topic', new Schema({
         name: String,
         icon: String,
+        desc: String,
         tasks: [{type: ObjectId}]
     }, {
         collection: 'topics'
@@ -102,6 +103,7 @@ exports.traverse = function (mongoose, cb) {
                                                             chapter: chapter.name,
                                                             topic: topic.name,
                                                             topicIcon: topic.icon,
+                                                            topicDesc: topic.desc,
                                                             task: task.type,
                                                             activity: activity.name,
                                                             actThumbnail: activity.thumbnail,
