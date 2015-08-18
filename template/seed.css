@@ -2,6 +2,16 @@ html {
     height: 100%;
 }
 
+@font-face {
+  font-family: 'onion-chinese';
+  src: url('FZLanTYJWC.eot');
+  src: url('FZLanTYJWC.ttf') format('truetype');
+}
+
+body{
+    font-family: 'onion-chinese' !important;
+}
+
 .ad-text {
     font-size: 1.8em;
     padding-top: 1.4em;

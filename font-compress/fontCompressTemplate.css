@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'onion-chinese';
+  src: url('FZLanTYJWC.ttf') format('truetype');
+  src: url('FZLanTYJWC.eot');
+}
+body{
+	font-family: 'onion-chinese' !important;
+}

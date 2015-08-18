@@ -9,8 +9,12 @@
     bower install
 
 ## 工作流 ##
+    gulp copy-seed1
 
-    npm start | test // 批量生成html
+    <!-- npm start | test // 批量生成html -->
+    npm start >> font-compress/template/seed1.jade  // 批量生成html,输出chapter, topic, activity name 到font-compress/template/seed1.jade,准备字体压缩
+
+    gulp font-compress // 字体压缩
 
     gulp debug | release // 前端工程化
 具体区别请看 config 文件夹和 gulp.js 文件配置

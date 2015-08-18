@@ -1,5 +1,8 @@
 var async = require('async');
 var _ = require('lodash');
+var chaptersNameStr = '';
+var topicsNameStr = '';
+var activitiesNameStr = '';
 
 exports.traverse = function (mongoose, cb) {
     var Schema = mongoose.Schema;
@@ -107,6 +110,9 @@ exports.traverse = function (mongoose, cb) {
                                                             actThumbnail: activity.thumbnail,
                                                             video: video.url
                                                         });
+                                                        chaptersNameStr += chapter.name;
+                                                        topicsNameStr += topic.name;
+                                                        activitiesNameStr += activity.name;
                                                     });
                                                     callback();
                                                 });
@@ -124,6 +130,8 @@ exports.traverse = function (mongoose, cb) {
                     // end of 2nd async
                 });
             }, function () {
+                chaptersNameStr += '立即免费使用';
+                console.log(chaptersNameStr, topicsNameStr, activitiesNameStr);             
                 cb(target);
             });
             // end of 1st async

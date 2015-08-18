@@ -29,3 +29,16 @@ vendor
 .lock-wscript
 .idea
 .DS_Store
+font-compress/.font-spider/FZLanTYJWC.ttf
+
+font-compress/FZLanTYJWC.eot
+
+font-compress/FZLanTYJWC.ttf
+
+font-compress/template/fontCompressTemplate.html
+
+font-compress/template/seed1.jade
+
+assets/FZLanTYJWC.eot
+
+assets/FZLanTYJWC.ttf
