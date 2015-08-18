@@ -26,13 +26,35 @@ var postPoint = {};
         /**
          * Schema of point.
          */
-        var point = {
-            eventKey: '',
-            eventValue: {},
-            url: '',
-            header: {},
-            from: 'pc'
-        };
+        var myId;
+        if (document.cookie.match(/tmp\.point\.userId/) == null) {
+            var tempId = new ObjectId();
+            document.cookie = 'tmp.point.userId=' + tempId;
+        }
+        myId = document.cookie.match(/tmp\.point\.userId\=\w+(?=(;|$))/)[0].split('=')[1];
+
+        if (bowser.android || bowser.ios) {
+            var point = {
+                eventKey: '',
+                eventValue: {},
+                url: '',
+                header: {
+                    userId: myId
+                },
+                from: 'mobile'
+            };
+        }
+        else {
+            var point = {
+                eventKey: '',
+                eventValue: {},
+                url: '',
+                header: {
+                    userId: myId
+                },
+                from: 'pc'
+            };
+        }
 
         /**
          * Insert data.
@@ -160,7 +182,7 @@ var postPoint = {};
             }
         });
         postPoint.buryPoint = buryPoint;
-        var videoPlayer = new MediaElementPlayer('#mobile-video', {
+        var mobileVideoPlayer = new MediaElementPlayer('#mobile-video', {
             iPadUseNativeControls: false,
             // force iPhone's native controls
             iPhoneUseNativeControls: false,
@@ -168,10 +190,25 @@ var postPoint = {};
             AndroidUseNativeControls: false,
             success: function (vP, dO) {
                 vP.addEventListener('play', function () {
-                    postPoint.buryPoint('#mobile-video', {"eventKey": "playLandingShareVideo", "fromMobile": 1});
+                    postPoint.buryPoint('#mobile-video', {"eventKey": "playLandingShareVideo"});
                 });
-                vP.addEventListener('pause', function () {
-                    postPoint.buryPoint('#mobile-video', {"eventKey": "pauseLandingShareVideo", "fromMobile": 1});
+                vP.addEventListener('ended', function () {
+                    postPoint.buryPoint('#mobile-video', {"eventKey": "endLandingShareVideo"});
+                });
+            }
+        });
+        var videoPlayer = new MediaElementPlayer('#pc-video', {
+            iPadUseNativeControls: false,
+            // force iPhone's native controls
+            iPhoneUseNativeControls: false,
+            // force Android's native controls
+            AndroidUseNativeControls: false,
+            success: function (vP, dO) {
+                vP.addEventListener('play', function () {
+                    postPoint.buryPoint('#pc-video', {"eventKey": "playLandingShareVideo"});
+                });
+                vP.addEventListener('ended', function () {
+                    postPoint.buryPoint('#pc-video', {"eventKey": "endLandingShareVideo"});
                 });
             }
         });
@@ -298,34 +335,138 @@ var redirectDownloadApp = function () {
     window.location = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.yangcong345.android.phone';
 };
 
-if (bowser.android) {
-    $('#mobileluodi').show();
-    $('#pcluodi').remove();
-    $('body').removeClass('pc');
-    // $('body').addClass('mobile');
-    var qudao = window.location.search.split('=')[1];
-    if (window.location.search[1] === 'q' && qudao) {
-        var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk?q=' + qudao;
+// ObjectID generator
+if (!document) var document = {cookie: ''}; // fix crashes on node
+
+/**
+ * Javascript class that mimics how WCF serializes a object of type MongoDB.Bson.ObjectId
+ * and converts between that format and the standard 24 character representation.
+ */
+var ObjectId = (function () {
+    var increment = Math.floor(Math.random() * (16777216));
+    var pid = Math.floor(Math.random() * (65536));
+    var machine = Math.floor(Math.random() * (16777216));
+
+    var setMachineCookie = function () {
+        var cookieList = document.cookie.split('; ');
+        for (var i in cookieList) {
+            var cookie = cookieList[i].split('=');
+            var cookieMachineId = parseInt(cookie[1], 10);
+            if (cookie[0] == 'mongoMachineId' && cookieMachineId && cookieMachineId >= 0 && cookieMachineId <= 16777215) {
+                machine = cookieMachineId;
+                break;
+            }
+        }
+        document.cookie = 'mongoMachineId=' + machine + ';expires=Tue, 19 Jan 2038 05:00:00 GMT;path=/';
+    };
+    if (typeof (localStorage) != 'undefined') {
+        try {
+            var mongoMachineId = parseInt(localStorage['mongoMachineId']);
+            if (mongoMachineId >= 0 && mongoMachineId <= 16777215) {
+                machine = Math.floor(localStorage['mongoMachineId']);
+            }
+            // Just always stick the value in.
+            localStorage['mongoMachineId'] = machine;
+        } catch (e) {
+            setMachineCookie();
+        }
     }
     else {
-        var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk';
+        setMachineCookie();
     }
-    $('#yangcong-logo').after('<span id="mobile-guide">&#x4E0B;&#x8F7D;<span class="download-guide">&#x6D0B;&#x8471;&#x6570;&#x5B66;</span><br >&#x770B;&#x66F4;&#x591A;&#x4F18;&#x8D28;&#x521D;&#x4E2D;&#x89C6;&#x9891;</span></div>');
-    $('.mobile-banner').attr('href', downloadURL);
-    $('.mobile-banner').attr('post-point', 'clickDownloadAPK');
-    $('#yangcong-logo').attr('src', 'yangcong.png');
-}
-else if (bowser.ios) {
-    $('.mobile-footer').remove();
-    $('#mobileluodi').show();
+
+    function ObjId() {
+        if (!(this instanceof ObjectId)) {
+            return new ObjectId(arguments[0], arguments[1], arguments[2], arguments[3]).toString();
+        }
+
+        if (typeof (arguments[0]) == 'object') {
+            this.timestamp = arguments[0].timestamp;
+            this.machine = arguments[0].machine;
+            this.pid = arguments[0].pid;
+            this.increment = arguments[0].increment;
+        }
+        else if (typeof (arguments[0]) == 'string' && arguments[0].length == 24) {
+            this.timestamp = Number('0x' + arguments[0].substr(0, 8)),
+                this.machine = Number('0x' + arguments[0].substr(8, 6)),
+                this.pid = Number('0x' + arguments[0].substr(14, 4)),
+                this.increment = Number('0x' + arguments[0].substr(18, 6))
+        }
+        else if (arguments.length == 4 && arguments[0] != null) {
+            this.timestamp = arguments[0];
+            this.machine = arguments[1];
+            this.pid = arguments[2];
+            this.increment = arguments[3];
+        }
+        else {
+            this.timestamp = Math.floor(new Date().valueOf() / 1000);
+            this.machine = machine;
+            this.pid = pid;
+            this.increment = increment++;
+            if (increment > 0xffffff) {
+                increment = 0;
+            }
+        }
+    };
+    return ObjId;
+})();
+
+ObjectId.prototype.getDate = function () {
+    return new Date(this.timestamp * 1000);
+};
+
+ObjectId.prototype.toArray = function () {
+    var strOid = this.toString();
+    var array = [];
+    var i;
+    for (i = 0; i < 12; i++) {
+        array[i] = parseInt(strOid.slice(i * 2, i * 2 + 2), 16);
+    }
+    return array;
+};
+
+/**
+ * Turns a WCF representation of a BSON ObjectId into a 24 character string representation.
+ */
+ObjectId.prototype.toString = function () {
+    if (this.timestamp === undefined
+        || this.machine === undefined
+        || this.pid === undefined
+        || this.increment === undefined) {
+        return 'Invalid ObjectId';
+    }
+
+    var timestamp = this.timestamp.toString(16);
+    var machine = this.machine.toString(16);
+    var pid = this.pid.toString(16);
+    var increment = this.increment.toString(16);
+    return '00000000'.substr(0, 8 - timestamp.length) + timestamp +
+        '000000'.substr(0, 6 - machine.length) + machine +
+        '0000'.substr(0, 4 - pid.length) + pid +
+        '000000'.substr(0, 6 - increment.length) + increment;
+};
+
+
+if (bowser.android || bowser.ios) {
     $('#pcluodi').remove();
     $('body').removeClass('pc');
     // $('body').addClass('mobile');
-    $('#yangcong-logo').after('<span id="mobile-guide" class="text-inverse">&#x4E0B;&#x8F7D;<span class="download-guide">&#x6D0B;&#x8471;&#x6570;&#x5B66;</span>&#xFF0C;&#x770B;&#x66F4;&#x591A;&#x4F18;&#x8D28;&#x521D;&#x4E2D;&#x89C6;&#x9891;</span></div>');
-    $('#footer-url').hide();
-    $('#yangcong-logo').attr('src', 'yangcong.png');
+    //var qudao = window.location.search.split('=')[1];
+    //if (window.location.search[1] === 'q' && qudao) {
+    //    var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk?q=' + qudao;
+    //}
+    //else {
+    //    var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk';
+    //}
+    $('#mobileluodi').show();
 
 }
+//else if (bowser.ios) {
+//    $('#pcluodi').remove();
+//    $('body').removeClass('pc');
+//    $('#mobileluodi').show();
+//    // $('body').addClass('mobile');
+//}
 else {
     $('#mobileluodi').remove();
     var signUpURL = 'http://yangcong345.com/signup';

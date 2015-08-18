@@ -40,12 +40,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
                         #share-weibo.share-icon(onclick="createShareUrl('weibo', '#{task}', '#{topicDesc}')",post-point="clickLandingShareWeibo")
                             img(src='mobile-weibo.png')
                 .video-player
-                    video.mejs-player(src=video, width='100%', height='100%', controls='controls', autoplay='')
+                    video#pc-video(src=video, width='100%', height='100%', controls='controls')
             .intro-zone
                 img(src='sideimg.png')
                 .intro-text 看动画，也是学数学
                 .intro-text 打游戏，也是做练习
-                .redirect-btn 更多免费视频
+                .redirect-btn(post-point='clickLandingShareSideBtn', onclick='window.location="http://yangcong345.com/signup"') 更多免费视频
             .bottom-bg(post-point="clickBottomBackgroundLogin",href="http://yangcong345.com/login")
         #mobileluodi(style='display: none')
             .mobile-banner
@@ -54,7 +54,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 .mobile-slogan 让数学变简单
             .mobile-hyper-zone
                 //video#mobile-video(src=video, onplay='$(".mejs-fullscreen-button").click();', poster=actThumbnail, width='100%')
-                video#mobile-video(src=video, poster=actThumbnail, post-point='{"eventKey": "clickLandingShareVideoZone", "fromMobile": 1}' , width='100%')
+                video#mobile-video(src=video, poster=actThumbnail, controls='controls', width='100%')
                 .mobile-title
                     span #{activity}
                 .mobile-sharing
