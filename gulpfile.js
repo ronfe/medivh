@@ -1,6 +1,13 @@
 var path = require('path');
 var del = require('del');
 
+/* font compress npm module */
+var rename = require('gulp-rename');
+var gfi = require("gulp-file-insert");
+var fontSpider = require('gulp-font-spider');
+var gulpCopy = require('gulp-copy');
+/****************************/
+
 var bower = require('./bower.json');
 var bowerDir = 'vendor';
 
@@ -25,16 +32,16 @@ var RELEASE = 'bin';
 gulp.task('debug', ['build_index']);
 gulp.task('release', ['bin_index']);
 
-gulp.task('debug', function(callback) {
+gulp.task('debug', function (callback) {
     runSequence('clean',
-        ['build_js', 'build_css','build_copy'],
+        ['build_js', 'build_css', 'build_copy'],
         'build_index',
         callback);
 });
 
-gulp.task('release', function(callback) {
+gulp.task('release', function (callback) {
     runSequence('clean',
-        ['bin_js', 'bin_css','bin_copy'],
+        ['bin_js', 'bin_css', 'bin_copy'],
         'bin_index',
         callback);
 });
@@ -130,3 +137,40 @@ gulp.task('bin_index', ['bin_copy', 'bin_css', 'bin_js'], function () {
         .pipe(plugins.filesize())
         .on('error', plugins.util.log);
 });
+
+
+/* font compress tasks */
+gulp.task('font-compress', ['renameFontName', 'insertJadeToHtml'], function () {
+    return gulp.src('font-compress/template/fontCompressTemplate.html')
+        .pipe(fontSpider());
+});
+
+gulp.task('renameFontName', function () {
+    gulp.src('font-compress/FZLanTYJW_Zhun.eot')
+        .pipe(rename('FZLanTYJWC.eot'))
+        .pipe(gulp.dest('assets/'));
+    return gulp.src('font-compress/FZLanTYJW_Zhun.ttf')
+        .pipe(rename('FZLanTYJWC.ttf'))
+        .pipe(gulp.dest('assets/'));
+});
+
+gulp.task('renameJadeConcatedTemplate', function () {
+    return gulp.src('font-compress/fontCompressTemplate.html')
+        .pipe(rename('fontCompressTemplate.html'))
+        .pipe(gulp.dest('font-compress/template/'));
+});
+
+gulp.task('insertJadeToHtml', ['renameJadeConcatedTemplate'], function () {
+    return gulp.src('font-compress/template/fontCompressTemplate.html')
+        .pipe(gfi({
+            "/* jadeStr */": "font-compress/template/seed1.jade"
+        }))
+        .pipe(gulp.dest('font-compress/template/'))
+});
+
+//优先npm start
+gulp.task('copy-seed1', function () {
+    return gulp.src('template/seed1.jade')
+        .pipe(gulpCopy('font-compress/', 2));
+});
+/********************/

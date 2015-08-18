@@ -4,7 +4,7 @@ var _ = require('lodash');
 var async = require('async');
 
 exports.generate = function (arr) {
-    var fn = jade.compileFile('./template/seed1.jade',{pretty:true});
+    var fn = jade.compileFile('./template/seed1.jade', {pretty: true});
     async.each(arr,
         function (item, callback) {
             fs.writeFile("./out/" + item.activity + '.html', fn(item), callback);
@@ -12,4 +12,4 @@ exports.generate = function (arr) {
             console.log("done." + (err | ''));
             process.exit(0);
         });
-}
+};

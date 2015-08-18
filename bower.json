@@ -31,7 +31,7 @@
         "./build/*.png"
       ]
     },
-    "font-awesome":{
+    "font-awesome": {
       "main": [
         "css/font-awesome.css",
         "fonts/*"
