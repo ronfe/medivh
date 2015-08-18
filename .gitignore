@@ -28,3 +28,4 @@ vendor
 # Users Environment Variables
 .lock-wscript
 .idea
+.DS_Store
