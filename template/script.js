@@ -242,18 +242,6 @@ var postPoint = {};
  * Created by ronfe on 15-5-5.
  */
 
-(function () {
-    var q = simpleStorage.get('q');
-    var domain = 'http://yangcong345.com/';
-    if (q) {
-        $('#signup').href = domain + 'signup' + '?q=' + q;
-        $('#login').href = domain + 'login' + '?q=' + q;
-        $('#mainpage')[0].href = domain + '?q=' + q;
-        $('#nav')[0].href = domain + '?q=' + q;
-    }
-}());
-
-
 //q for sharing platform
 var createShareUrl = function (q, videoType, topicDesc) {
     var url = '';
