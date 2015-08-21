@@ -15,6 +15,7 @@
  * postPoint.buryPoint(element, pointData);
  * And the point will be sent immediately.
  */
+var storage = $.sessionStorage;
 var postPoint = {};
 +function ($, window) {
     /**
@@ -156,6 +157,20 @@ var postPoint = {};
     };
     var document = window.document;
     $(document).ready(function () {
+
+        // judge user's query
+        var downloadOption = storage.get('downloadOption') ? storage.get('downloadOption') : getUrlParameter('download');
+        var isolatedOption = storage.get('isolated') ? storage.get('isolated') : getUrlParameter('isolated');
+        storage.set('downloadOption', downloadOption);
+        storage.set('isolatedOption', isolatedOption);
+
+        if (downloadOption === 'false') {
+            $('.mobile-app-download').remove();
+        }
+        if (isolatedOption === 'true' || !isolatedOption) {
+            $('.mobile-logo').removeAttr('onclick');
+        }
+
         $('[post-point]').each(function (index, element) {
             var data = $(element).attr('post-point');
 

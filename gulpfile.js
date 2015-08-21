@@ -23,8 +23,8 @@ var plugins = require("gulp-load-plugins")({
 var runSequence = require('run-sequence');
 
 // script
-var SCRIPT = 'template/script.js';
-var CSS = 'template/seed.css';
+var SCRIPT = 'template/*.js';
+var CSS = 'template/*.css';
 
 var DEBUG = 'build';
 var RELEASE = 'bin';
@@ -34,15 +34,17 @@ gulp.task('release', ['bin_index']);
 
 gulp.task('debug', function (callback) {
     runSequence('clean',
-        ['build_js', 'build_css', 'build_copy'],
+        ['build_js', 'build_css', 'build_copy', 'build_copy_chapter'],
         'build_index',
+        'build_copy_custom',
         callback);
 });
 
 gulp.task('release', function (callback) {
     runSequence('clean',
-        ['bin_js', 'bin_css', 'bin_copy'],
+        ['bin_js', 'bin_css', 'bin_copy', 'bin_copy_chapter'],
         'bin_index',
+        'bin_copy_custom',
         callback);
 });
 
@@ -54,7 +56,7 @@ gulp.task('build_js', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.js'
-    }).concat(SCRIPT))
+    }))
         //.pipe(plugins.debug())
         .pipe(plugins.concat(bowerDir + bower.version + '.js'))
         .pipe(gulp.dest(DEBUG))
@@ -66,7 +68,7 @@ gulp.task('bin_js', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.js'
-    }).concat(SCRIPT))
+    }))
         //.pipe(plugins.debug())
         .pipe(plugins.concat(bowerDir + bower.version + '.js'))
         .pipe(plugins.uglify())
@@ -79,7 +81,7 @@ gulp.task('build_css', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.css'
-    }).concat(CSS))
+    }))
         .pipe(plugins.concat(bowerDir + bower.version + '.min.css'))
         .pipe(plugins.basename())
         .pipe(gulp.dest(DEBUG))
@@ -91,7 +93,7 @@ gulp.task('bin_css', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.css'
-    }).concat(CSS))
+    }))
         .pipe(plugins.concat(bowerDir + bower.version + '.min.css'))
         .pipe(plugins.basename())
         .pipe(plugins.minifyCSS())
@@ -104,7 +106,7 @@ gulp.task('build_copy', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: /.*\.((?!less|css|js).)*$/i
-    }).concat('assets/*').concat('out/*.html'))
+    }).concat('assets/*').concat('out/*.html').concat('out/chapter'))
         .pipe(gulp.dest(DEBUG))
         .on('error', plugins.util.log);
 });
@@ -113,8 +115,32 @@ gulp.task('bin_copy', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: /.*\.((?!less|css|js).)*$/i
-    }).concat('assets/*').concat('out/*.html'))
+    }).concat('assets/*').concat('out/*.html').concat('out/chapter'))
         .pipe(gulp.dest(RELEASE))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('build_copy_custom', function () {
+    return gulp.src(['template/*.js', 'template/*.css'])
+        .pipe(gulp.dest(DEBUG))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('bin_copy_custom', function () {
+    return gulp.src(['template/*.js', 'template/*.css'])
+        .pipe(gulp.dest(RELEASE))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('build_copy_chapter', function () {
+    return gulp.src('out/chapter/*.html')
+        .pipe(gulp.dest(DEBUG + '/chapter'))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('bin_copy_chapter', function () {
+    return gulp.src('out/chapter/*.html')
+        .pipe(gulp.dest(RELEASE + '/chapter'))
         .on('error', plugins.util.log);
 });
 
