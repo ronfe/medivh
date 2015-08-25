@@ -168,7 +168,8 @@ var postPoint = {};
             $('.mobile-app-download').remove();
         }
         if (isolatedOption === 'true' || !isolatedOption) {
-            $('.mobile-logo').removeAttr('onclick');
+            $('.mobile-logo').remove();
+            $('.mobile-home').remove();
         }
 
         $('[post-point]').each(function (index, element) {
