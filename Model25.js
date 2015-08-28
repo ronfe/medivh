@@ -114,6 +114,7 @@ exports.traverse = function (mongoose, cb) {
                             Topic.findOne({_id: icourse.topic}, function (err, topic) {
                                 var tempTopic = {
                                     topicName: topic.name,
+                                    icon: topic.icon,
                                     chapter: chapter.name,
                                     videos: []
                                 };

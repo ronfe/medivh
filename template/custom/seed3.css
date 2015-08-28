@@ -1,0 +1,1000 @@
+* {
+    font-family: 'onion-chinese' !important;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+html {
+    height: 100%;
+}
+
+i {
+    font-family: FontAwesome !important;
+    color: gray;
+    margin: 0.5em;
+    font-size: 1.3em;
+}
+
+@font-face {
+    font-family: 'onion-chinese';
+    src: url('FZLanTYJWC.eot');
+    src: url('FZLanTYJWC.ttf') format('truetype');
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+video {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.activity-name {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #3B3B3B;
+}
+
+.bottom-bg {
+    width: 100%;
+    height: 16em;
+    background-image: url("../../assets/bg.png");
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+
+.fa-angle-down {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0;
+    margin-right: 1em;
+}
+
+.head-container {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.intro-zone {
+    float: left;
+    color: gray;
+    width: 20%;
+    text-align: center;
+    padding: 1em 1%;
+}
+
+.intro-text {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #BDBDBD;
+}
+
+.list {
+    width: 100%;
+    font-size: 0;
+    margin-top: 1.2rem;
+    padding-left: 0;
+}
+
+.list li {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 .4rem 1.1rem;
+}
+
+.list li a {
+    color: black;
+}
+
+.list li a:hover {
+    text-decoration: none;
+}
+
+.list img {
+    width: 100%;
+}
+
+.list h3 {
+    height: 3rem;
+    line-height: 3rem;
+    overflow: hidden;
+    font-size: 1.5rem;
+}
+
+.mejs-container {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+}
+
+.mejs-container .mejs-controls {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.mobile-app-assist-text {
+    color: #5dc9f6;
+    font-size: 1em;
+}
+
+.mobile-app-download {
+    display: inline;
+    float: right;
+    background-color: white;
+    color: #1696ea;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    padding: 3%;
+}
+
+.mobile-app-icon {
+    position: relative;
+    display: inline;
+}
+
+.mobile-app-icon img {
+    width: 12%;
+    vertical-align: top;
+}
+
+.mobile-app-main-text {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.mobile-app-text {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.mobile-banner {
+    padding: 3% 5% 3% 5%;
+    width: 100%;
+    display: table;
+    border-bottom: 1px solid black;
+    height: 48px;
+}
+
+.mobile-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1696ea;
+    padding: 1em;
+    height: 5em;
+}
+
+.mobile-chapter {
+    position: relative;
+    display: table-cell;
+    width: 40%;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mobile-home {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+
+.mobile-home img {
+    float: right;
+}
+
+.mobile-hyper-zone video {
+    max-width: 100%;
+}
+
+.mobile-hyper-zone div {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 0 !important;
+}
+
+.mobile-logo {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+
+}
+
+.mobile-logo img {
+    height: 20px;
+    width: auto;
+
+}
+
+.mobile-sharing {
+    width: 100%;
+    height: 4em;
+    background: white;
+    border: none;
+    display: table;
+    padding: 1em 5%;
+}
+
+.mobile-sharing ul {
+    float: right;
+    list-style-type: none;
+    border: none;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 0;
+    margin-right: 1%;
+    margin-bottom: 0px;
+}
+
+.mobile-sharing ul li {
+    float: left;
+}
+
+.mobile-slogan {
+    float: right;
+    color: #959595;
+    display: inline-block;
+    position: relative;
+    line-height: 200%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.mobile-space {
+    margin: 0 .8rem;
+}
+
+.mobile-title {
+    width: 100%;
+    height: 4em;
+    background: white;
+    padding-top: 1em;
+    padding-left: 5%;
+    border-bottom: solid #e0e0e0 1px !important;
+}
+
+.mobile-title span {
+    font-size: 18px;
+    color: #3b3b3b;
+}
+
+.navbar {
+    background-color: white;
+    height: 5em;
+}
+
+.navbar-brand {
+    width: 8em;
+    margin: 0;
+    padding: 10px;
+}
+
+.navbar-header {
+    padding: 1em;
+}
+
+.navbar-right {
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.navbar-static-top {
+    padding: 0 3em;
+}
+
+.pc {
+    height: 100%;
+    background: #f5f5f5;
+    min-width: 1024px;
+}
+
+.redirect-btn {
+    background-color: #2ca0ed;
+    box-shadow: none;
+    color: white;
+    margin: 1em 1.5em;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4em;
+    display: inline-block;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.redirect-btn a {
+    color: white;
+}
+
+.redirect-btn a:hover {
+    text-decoration: none;
+}
+
+.share-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.share-icon img {
+    width: 4em;
+}
+
+.share-label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #bdbdbd;
+    margin-right: 15px;
+}
+
+.share-logo {
+    width: 48px;
+    padding-left: .8em;
+    padding-right: 0;
+}
+
+.sharing-text {
+    width: 40%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sharing-text span {
+    font-size: 1.2em;
+    color: #dcdcdc;
+}
+
+.share-zone {
+    float: right;
+    display: inline-block;
+}
+
+.topic-info {
+    display: inline-block;
+    margin-left: 1.5em;
+    vertical-align: middle;
+}
+
+.topic-logo {
+    display: inline;
+}
+
+.topic-logo img {
+    width: 6%;
+}
+
+.topic-name {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #959595;
+    font-weight: 800;
+}
+
+.video-info {
+    background-color: white;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 2em 30px;
+    vertical-align: middle;
+}
+
+.video-player {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.video-player:focus {
+    border: none !important;
+}
+
+.video-zone {
+    float: left;
+    color: black;
+    width: 65%;
+    margin-left: 10em;
+    padding: 1em;
+}
+
+#login:hover {
+    background-color: white;
+}
+
+#mobileluodi {
+    position: relative;
+    height: 100%;
+    min-height: 560px;
+    bottom: 0px;
+}
+
+#mobile-video {
+    background-color: black;
+}
+
+#share-qq {
+    margin-right: 6px;
+}
+
+#share-qzone {
+    margin: auto 6px;
+}
+
+#share-weibo {
+    margin-left: 6px;
+}
+
+#signup:hover {
+    background-color: white;
+}
+
+* {
+    font-family: 'onion-chinese' !important;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+html {
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'onion-chinese';
+    src: url('FZLanTYJWC.eot');
+    src: url('FZLanTYJWC.ttf') format('truetype');
+}
+
+body {
+    height: 100%;
+}
+
+video {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.activity-name {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #3B3B3B;
+}
+
+.bottom-bg {
+    width: 100%;
+    height: 16em;
+    background-image: url("../../assets/bg.png");
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+
+.head-container {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.intro-zone {
+    float: left;
+    color: gray;
+    width: 20%;
+    text-align: center;
+    padding: 1em 1%;
+}
+
+.intro-text {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #BDBDBD;
+}
+
+.list {
+    width: 100%;
+    font-size: 0;
+    margin-top: 1.2rem;
+    padding-left: 0;
+}
+
+.list li {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 0 .4rem 1.1rem;
+}
+
+.list li a {
+    color: black;
+}
+
+.list li a:hover {
+    text-decoration: none;
+}
+
+.list img {
+    width: 100%;
+}
+
+.list h3 {
+    height: 3rem;
+    line-height: 3rem;
+    overflow: hidden;
+    font-size: 1.5rem;
+}
+
+.mejs-container {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+}
+
+.mejs-container .mejs-controls {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.mobile-app-assist-text {
+    color: #5dc9f6;
+    font-size: 1em;
+}
+
+.mobile-app-download {
+    display: inline;
+    float: right;
+    background-color: white;
+    color: #1696ea;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    padding: 3%;
+}
+
+.mobile-app-icon {
+    position: relative;
+    display: inline;
+}
+
+.mobile-app-icon img {
+    width: 12%;
+    vertical-align: top;
+}
+
+.mobile-app-main-text {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.mobile-app-text {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.mobile-banner {
+    padding: 3% 5% 3% 5%;
+    width: 100%;
+    display: table;
+    height: 54px;
+    position: fixed;
+    z-index: 99;
+    background-color: white;
+    top: 0;
+}
+
+.mobile-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1696ea;
+    padding: 1em;
+    height: 5em;
+}
+
+.mobile-chapter {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mobile-home {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+
+.mobile-home img {
+    float: right;
+}
+
+.mobile-hyper-zone video {
+    max-width: 100%;
+}
+
+.mobile-hyper-zone div {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 0 !important;
+}
+
+.mobile-logo {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+
+}
+
+.mobile-logo img {
+    height: 20px;
+    width: auto;
+
+}
+
+.mobile-sharing {
+    width: 100%;
+    height: 4em;
+    background: white;
+    border: none;
+    display: table;
+    padding: 1em 5%;
+}
+
+.mobile-sharing ul {
+    float: right;
+    list-style-type: none;
+    border: none;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 0;
+    margin-right: 1%;
+    margin-bottom: 0px;
+}
+
+.mobile-sharing ul li {
+    float: left;
+}
+
+.mobile-slogan {
+    float: right;
+    color: #959595;
+    display: inline-block;
+    position: relative;
+    line-height: 200%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.mobile-space {
+    margin: 0 .8rem;
+}
+
+.mobile-title {
+    width: 100%;
+    height: 4em;
+    background: white;
+    padding-top: 1em;
+    padding-left: 5%;
+    border-bottom: solid #e0e0e0 1px !important;
+}
+
+.mobile-title span {
+    font-size: 18px;
+    color: #3b3b3b;
+}
+
+.navbar {
+    background-color: white;
+    height: 5em;
+}
+
+.navbar-brand {
+    width: 8em;
+    margin: 0;
+    padding: 10px;
+}
+
+.navbar-header {
+    padding: 1em;
+}
+
+.navbar-right {
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.navbar-static-top {
+    padding: 0 3em;
+}
+
+.pc {
+    height: 100%;
+    background: #f5f5f5;
+    min-width: 1024px;
+}
+
+.redirect-btn {
+    background-color: #2ca0ed;
+    box-shadow: none;
+    color: white;
+    margin: 1em 1.5em;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4em;
+    display: inline-block;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.redirect-btn a {
+    color: white;
+}
+
+.redirect-btn a:hover {
+    text-decoration: none;
+}
+
+.share-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.share-icon img {
+    width: 4em;
+}
+
+.share-label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #bdbdbd;
+    margin-right: 15px;
+}
+
+.share-logo {
+    width: 48px;
+    padding-left: .8em;
+    padding-right: 0;
+}
+
+.sharing-text {
+    width: 40%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sharing-text span {
+    font-size: 1.2em;
+    color: #dcdcdc;
+}
+
+.share-zone {
+    float: right;
+    display: inline-block;
+}
+
+.topic-info {
+    display: inline-block;
+    margin-left: 1.5em;
+    vertical-align: middle;
+}
+
+.topic-logo {
+    display: inline;
+}
+
+.topic-logo img {
+    width: 6%;
+}
+
+.topic-name {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #959595;
+    font-weight: 800;
+}
+
+.video-info {
+    background-color: white;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 2em 30px;
+    vertical-align: middle;
+}
+
+.video-player {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.video-player:focus {
+    border: none !important;
+}
+
+.video-zone {
+    float: left;
+    color: black;
+    width: 65%;
+    margin-left: 10em;
+    padding: 1em;
+}
+
+#login:hover {
+    background-color: white;
+}
+
+#mobileluodi {
+    position: relative;
+    height: 100%;
+    min-height: 560px;
+    bottom: 0px;
+}
+
+#mobile-video {
+    background-color: black;
+}
+
+#share-qq {
+    margin-right: 6px;
+}
+
+#share-qzone {
+    margin: auto 6px;
+}
+
+#share-weibo {
+    margin-left: 6px;
+}
+
+#signup:hover {
+    background-color: white;
+}
+
+.space2 {
+    margin: 0 1.2rem;
+    margin-top: 54px;
+}
+
+.list-ul {
+    width: 100%;
+    font-size: 0;
+    padding: 1.6rem 0;
+}
+
+.list-ul li {
+    width: 100%;
+}
+
+.list-ul .hd {
+    margin-bottom: 1.6rem;
+    height: 5.6rem;
+    overflow: hidden;
+    background-color: #efefef;
+    border-radius: 2.8rem;
+    position: relative;
+}
+
+.list-ul .hd img {
+    display: inline-block;
+    position: absolute;
+    left: 1.1rem;
+    top: 1.1rem;
+    width: 3.7rem;
+}
+
+.list-ul .hd h3 {
+    display: inline-block;
+    height: 4.8rem;
+    line-height: 5.6rem;
+    overflow: hidden;
+    font-size: 1.6rem;
+    color: #1c1419;
+    padding-left: 5.9rem;
+    margin: 0;
+}
+
+.list-ul .hd i {
+    position: absolute;
+    right: .8rem;
+    top: 2.2rem;
+    font-size: 1.4rem;
+    color: #ababab;
+    transition: .6s ease-in-out transform;
+}
+
+.list-ul .bd {
+    display: none;
+    position: relative;
+    top: -1rem;
+}
+
+.list-ul h4 {
+    height: 3.9rem;
+    line-height: 3.9rem;
+    overflow: hidden;
+    font-size: 1.4rem;
+    background-color: #fff;
+}
+
+.list-ul .iconfont {
+    font-size: 2.6rem;
+    color: #d3d2d2;
+    margin: 0 1.4rem 0 1.8rem;
+    position: relative;
+    top: .4rem;
+}
+
+.list-ul h4 a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #1c1419;
+    font-size: 1.6rem;
+}
+
+/*.list-ul .current .bd{display: block;}*/
+.list-ul .current .hd i {
+    transform: rotate(180deg);
+}
+
+/*字体图标 begin*/
+@font-face {
+    font-family: "iconfont";
+    src: url('../font/iconfont.eot'); /* IE9*/
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../font/iconfont.woff') format('woff'), /* chrome、firefox */ url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-hicjsquareaddenventcommonvideobtn:before {
+    content: "\e68e";
+}
+
+.icon-down:before {
+    content: "\e66d";
+}
+
+#mobile-logo {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+
+}

@@ -1,0 +1,387 @@
+* {
+    font-family: 'onion-chinese' !important;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+html {
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'onion-chinese';
+    src: url('FZLanTYJWC.eot');
+    src: url('FZLanTYJWC.ttf') format('truetype');
+}
+
+body {
+    height: 100%;
+}
+
+video {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.activity-name {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #3B3B3B;
+}
+
+.bottom-bg {
+    width: 100%;
+    height: 16em;
+    background-image: url("../../assets/bg.png");
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+
+.head-container {
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+.intro-zone {
+    float: left;
+    color: gray;
+    width: 20%;
+    text-align: center;
+    padding: 1em 1%;
+}
+
+.intro-text {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #BDBDBD;
+}
+
+.mejs-container {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+}
+
+.mejs-container .mejs-controls {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.mobile-app-assist-text {
+    color: #5dc9f6;
+    font-size: 1em;
+}
+
+.mobile-app-download {
+    display: inline;
+    float: right;
+    background-color: white;
+    color: #1696ea;
+    border-radius: 0.3em;
+    font-size: 1.2em;
+    padding: 3%;
+}
+
+.mobile-app-icon {
+    position: relative;
+    display: inline;
+}
+
+.mobile-app-icon img {
+    width: 12%;
+    vertical-align: top;
+}
+
+.mobile-app-main-text {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+
+.mobile-app-text {
+    display: inline-block;
+    margin-left: 1em;
+}
+
+.mobile-banner {
+    padding: 3% 5% 3% 5%;
+    width: 100%;
+    display: table;
+    height: 54px;
+}
+
+.mobile-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #1696ea;
+    padding: 1em;
+    height: 5em;
+}
+
+.mobile-chapter {
+    position: relative;
+    display: table-cell;
+    width: 40%;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mobile-home {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+
+.mobile-home img {
+    float: right;
+}
+
+.mobile-hyper-zone video {
+    max-width: 100%;
+}
+
+.mobile-hyper-zone div {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 0 !important;
+}
+
+.mobile-logo {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+
+}
+
+.mobile-logo img {
+    height: 20px;
+    width: auto;
+
+}
+
+.mobile-sharing {
+    width: 100%;
+    height: 4em;
+    background: white;
+    border: none;
+    display: table;
+    padding: 1em 5%;
+}
+
+.mobile-sharing ul {
+    float: right;
+    list-style-type: none;
+    border: none;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 0;
+    margin-right: 1%;
+    margin-bottom: 0px;
+}
+
+.mobile-sharing ul li {
+    float: left;
+}
+
+.mobile-slogan {
+    float: right;
+    color: #959595;
+    display: inline-block;
+    position: relative;
+    line-height: 200%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.mobile-title {
+    width: 100%;
+    height: 4em;
+    background: white;
+    padding-top: 1em;
+    padding-left: 5%;
+    border-bottom: solid #e0e0e0 1px !important;
+}
+
+.mobile-title span {
+    font-size: 18px;
+    color: #3b3b3b;
+}
+
+.navbar {
+    background-color: white;
+    height: 5em;
+}
+
+.navbar-brand {
+    width: 8em;
+    margin: 0;
+    padding: 10px;
+}
+
+.navbar-header {
+    padding: 1em;
+}
+
+.navbar-right {
+    margin-right: 1em;
+    margin-top: 1em;
+}
+
+.navbar-static-top {
+    padding: 0 3em;
+}
+
+.pc {
+    height: 100%;
+    background: #f5f5f5;
+    min-width: 1024px;
+}
+
+.redirect-btn {
+    background-color: #2ca0ed;
+    box-shadow: none;
+    color: white;
+    margin: 1em 1.5em;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4em;
+    display: inline-block;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.redirect-btn a {
+    color: white;
+}
+
+.redirect-btn a:hover {
+    text-decoration: none;
+}
+
+.share-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.share-icon img {
+    width: 4em;
+}
+
+.share-label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #bdbdbd;
+    margin-right: 15px;
+}
+
+.share-logo {
+    width: 48px;
+    padding-left: .8em;
+    padding-right: 0;
+}
+
+.sharing-text {
+    width: 40%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sharing-text span {
+    font-size: 1.2em;
+    color: #dcdcdc;
+}
+
+.share-zone {
+    float: right;
+    display: inline-block;
+}
+
+.topic-info {
+    display: inline-block;
+    margin-left: 1.5em;
+    vertical-align: middle;
+}
+
+.topic-logo {
+    display: inline;
+}
+
+.topic-logo img {
+    width: 6%;
+}
+
+.topic-name {
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #959595;
+    font-weight: 800;
+}
+
+.video-info {
+    background-color: white;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 2em 30px;
+    vertical-align: middle;
+}
+
+.video-player {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.video-player:focus {
+    border: none !important;
+}
+
+.video-zone {
+    float: left;
+    color: black;
+    width: 65%;
+    margin-left: 10em;
+    padding: 1em;
+}
+
+#login:hover {
+    background-color: white;
+}
+
+#mobileluodi {
+    position: relative;
+    height: 100%;
+    min-height: 560px;
+    bottom: 0px;
+}
+
+#mobile-video {
+    background-color: black;
+}
+
+#share-qq {
+    margin-right: 6px;
+}
+
+#share-qzone {
+    margin: auto 6px;
+}
+
+#share-weibo {
+    margin-left: 6px;
+}
+
+#signup:hover {
+    background-color: white;
+}
+

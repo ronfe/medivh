@@ -159,17 +159,48 @@ var postPoint = {};
     $(document).ready(function () {
 
         // judge user's query
-        var downloadOption = storage.get('downloadOption') ? storage.get('downloadOption') : getUrlParameter('download');
-        var isolatedOption = storage.get('isolated') ? storage.get('isolated') : getUrlParameter('isolated');
-        storage.set('downloadOption', downloadOption);
-        storage.set('isolatedOption', isolatedOption);
+        if (simpleStorage.get('downloadOption')) {
+            if (getUrlParameter('download')) {
+                if (!(getUrlParameter('download') === simpleStorage.get('downloadOption'))) {
+                    simpleStorage.set('downloadOption', getUrlParameter('download'));
+
+                }
+                var downloadOption = simpleStorage.get('downloadOption');
+            }
+            else {
+                var downloadOption = simpleStorage.get('downloadOption');
+            }
+        }
+        else {
+            simpleStorage.set('downloadOption', getUrlParameter('download'));
+            var downloadOption = getUrlParameter('download') ? getUrlParameter('download') : 'true';
+        }
+
+        if (simpleStorage.get('isolatedOption')) {
+            if (getUrlParameter('isolate')) {
+                if (!(getUrlParameter('isolate') === simpleStorage.get('isolatedOption'))) {
+                    simpleStorage.set('isolatedOption', getUrlParameter('isolate'));
+
+                }
+                var isolatedOption = simpleStorage.get('isolatedOption');
+            }
+            else {
+                var isolatedOption = simpleStorage.get('isolatedOption');
+            }
+        }
+        else {
+            simpleStorage.set('isolatedOption', getUrlParameter('isolate'));
+            var isolatedOption = getUrlParameter('isolate') ? getUrlParameter('isolate') : 'true';
+        }
 
         if (downloadOption === 'false') {
             $('.mobile-app-download').remove();
         }
         if (isolatedOption === 'true' || !isolatedOption) {
-            $('.mobile-logo').remove();
-            $('.mobile-home').remove();
+            $('#isolateT').show();
+        }
+        else {
+            $('#isolateF').show();
         }
 
         $('[post-point]').each(function (index, element) {

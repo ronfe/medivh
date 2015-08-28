@@ -30,7 +30,7 @@ exports.generate = function (arr) {
                         guideVideo: item.guideVideo,
                         topics: _.uniq(item.topics)
                     };
-                    fs.writeFile("./out/chapter/" + item.chapterName + ".html", topicFn(newItem), callback);
+                    fs.writeFile("./out/[chapter] " + item.chapterName + ".html", topicFn(newItem), callback);
                 }, function (err) {
                     console.log("done topics." + (err | ''));
                     cb(null, 'chapters');

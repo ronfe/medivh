@@ -49,12 +49,16 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 .redirect-btn(post-point='clickLandingShareSideBtn', onclick='window.location="http://yangcong345.com/signup"') 更多免费视频
             .bottom-bg(post-point="clickBottomBackgroundLogin",href="http://yangcong345.com/login")
         #mobileluodi(style='display: none')
-            .mobile-banner
-                .mobile-logo(onclick='window.location="chapter/" + "#{chapter}" + ".html";')
+            #isolateF.mobile-banner(style='display: none;')
+                .mobile-logo(onclick='window.location="[chapter] " + "#{chapter}" + ".html";')
                     img(src="mobile-back.png")
                 .mobile-chapter #{chapter}
                 .mobile-home(onclick='window.location="/";')
                     img(src="mobile-home.png")
+            #isolateT.mobile-banner(style='display:none;')
+                .mobile-logo
+                    img(src="mobile-logo.png")
+                .mobile-slogan 让数学变简单
 
             .mobile-hyper-zone
                 //video#mobile-video(src=video, onplay='$(".mejs-fullscreen-button").click();', poster=actThumbnail, width='100%')

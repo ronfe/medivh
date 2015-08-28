@@ -7,11 +7,26 @@ html(xmlns:wb='http://open.weibo.com/wb')
         meta(name='keywords', content='洋葱数学，初中数学，数学，数学学习，微课，微视频，翻转课堂')
         meta(name='description' content='洋葱数学让每个学生“一学就懂”！将趣味短视频与习题结合，轻松进行个性化在线学习，每天5分钟，赶快体验！')
         link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+        link(rel='stylesheet' href='seed2.css')
         meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
         // inject:css
         // endinject
 
     body
-        ul
-            each val in chapterList
-                li= val.chapterName
+        #mobileluodi
+            #isolateF.mobile-banner
+                .mobile-logo
+                    img(src="mobile-logo.png")
+                .mobile-slogan 让数学变简单
+
+            .mobile-space
+                ul.list
+                    each val in chapterList
+                        li
+                            a(href='[chapter] ' + val.chapterName + '.html')
+                                img(src=val.chapterIcon, alt="")
+                                h3= val.chapterName
+
+    // inject:js
+    // endinject
+    script(src='script1.js')
