@@ -12,7 +12,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         // inject:css
         // endinject
 
-    body
+    body(post-point='{"eventKey": "enterLandingPage"}')
         #mobileluodi
             #isolateF.mobile-banner
                 .mobile-logo
@@ -23,7 +23,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 ul.list
                     each val in chapterList
                         li
-                            a(href='[chapter] ' + val.chapterName + '.html')
+                            a(href='[chapter] ' + val.chapterName + '.html',post-point='{"eventKey":"clickLandingChapter","chapterName":"#{val.chapterName}"}')
                                 img(src=val.chapterIcon, alt="")
                                 h3= val.chapterName
 
