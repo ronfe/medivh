@@ -11,7 +11,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
         // inject:css
         // endinject
-    body
+    body(post-point='{"eventKey":"enterTopicsLandingPage"}')
         #mobileluodi
             #isolateF.mobile-banner(style='display: none;')
                 .mobile-logo(onclick='window.location="/";')
@@ -27,14 +27,14 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 ul.list-ul
                     each val in topics
                         li
-                            .hd
+                            .hd(post-point='{"eventKey":"clickTopicsToggle", "topicName":"#{val.topicName}"}')
                                 img(src= val.icon)
                                 h3= val.topicName
                                 i.fa.fa-angle-down
                             .bd
                                 each video in val.videos
                                     h4
-                                        a(href="../"+ video.activityName + '.html' alt="")
+                                        a(href="../"+ video.activityName + '.html' alt="", post-point='{"eventKey":"clickNestedVideo", "videoName":"#{video.activityName}"}')
                                             i.fa.fa-play-circle-o
                                             case video.task
                                                 when 'elementary'
