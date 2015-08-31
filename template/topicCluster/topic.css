@@ -123,7 +123,7 @@ video {
 
 .mobile-app-assist-text {
     color: #5dc9f6;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .mobile-app-download {
@@ -529,11 +529,6 @@ video {
 .mejs-container .mejs-controls {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
-}
-
-.mobile-app-assist-text {
-    color: #5dc9f6;
-    font-size: 1em;
 }
 
 .mobile-app-download {

@@ -38,11 +38,11 @@ html(xmlns:wb='http://open.weibo.com/wb')
                                             i.fa.fa-play-circle-o
                                             case video.task
                                                 when 'elementary'
-                                                [基础] #{video.activityName}
-when 'advanced'
-[提高] #{video.activityName}
-default
-    #{video.activityName}
+                                                    span [基础] #{video.activityName}
+                                                when 'advanced'
+                                                    span [提高] #{video.activityName}
+                                                default
+                                                    #{video.activityName}
 
 // inject:js
 // endinject

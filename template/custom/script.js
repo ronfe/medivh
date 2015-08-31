@@ -40,7 +40,10 @@ var postPoint = {};
                 eventValue: {},
                 url: '',
                 header: {
-                    userId: myId
+                    userId: myId,
+                    downloadOption: simpleStorage.get('downloadOption'),
+                    isolatedOption: simpleStorage.get('isolatedOption'),
+                    currentName: window.location.pathname
                 },
                 from: 'mobile'
             };
