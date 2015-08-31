@@ -4,12 +4,9 @@ var _ = require('lodash');
 var async = require('async');
 
 exports.generate = function (arr) {
-    var fn = jade.compileFile('./template/seed1.jade', {pretty: true});
-    var chapterFn = jade.compileFile('./template/seed2.jade', {pretty: true});
-    var topicFn = jade.compileFile('./template/seed3.jade', {pretty: true});
-
-    fs.mkdirSync("./out/chapter");
-
+    var fn = jade.compileFile('./template/videoSharing/sharePage.jade', {pretty: true});
+    var chapterFn = jade.compileFile('./template/chapterCluster/chapterPage.jade', {pretty: true});
+    var topicFn = jade.compileFile('./template/topicCluster/topicPage.jade', {pretty: true});
 
     async.parallel([
         function (cb) {
@@ -30,7 +27,7 @@ exports.generate = function (arr) {
                         guideVideo: item.guideVideo,
                         topics: _.uniq(item.topics)
                     };
-                    fs.writeFile("./out/[chapter] " + item.chapterName + ".html", topicFn(newItem), callback);
+                    fs.writeFile("./out/chapter-" + item.chapterName + ".html", topicFn(newItem), callback);
                 }, function (err) {
                     console.log("done topics." + (err | ''));
                     cb(null, 'chapters');

@@ -7,7 +7,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         meta(name='keywords', content='洋葱数学，初中数学，数学，数学学习，微课，微视频，翻转课堂')
         meta(name='description' content='洋葱数学让每个学生“一学就懂”！将趣味短视频与习题结合，轻松进行个性化在线学习，每天5分钟，赶快体验！')
         link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
-        link(rel="stylesheet", href="seed3.css")
+        link(rel="stylesheet", href="topicCluster/topic.css")
         meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
         // inject:css
         // endinject
@@ -34,17 +34,17 @@ html(xmlns:wb='http://open.weibo.com/wb')
                             .bd
                                 each video in val.videos
                                     h4
-                                        a(href="../"+ video.activityName + '.html' alt="")
+                                        a(href="../" + video.activityName + '.html' alt="")
                                             i.fa.fa-play-circle-o
                                             case video.task
                                                 when 'elementary'
-                                                    [基础] #{video.activityName}
-                                                when 'advanced'
-                                                    [提高] #{video.activityName}
-                                                default
-                                                    #{video.activityName}
+                                                [基础] #{video.activityName}
+when 'advanced'
+[提高] #{video.activityName}
+default
+    #{video.activityName}
 
-    // inject:js
-    // endinject
-    script(src='script1.js')
-    script(src='seed3.js')
+// inject:js
+// endinject
+script(src='custom/script.js')
+script(src='topicCluster/topic.js')

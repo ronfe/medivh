@@ -127,7 +127,7 @@ gulp.task('build_copy_custom', function () {
 });
 
 gulp.task('bin_copy_custom', function () {
-    return gulp.src(['template/custom/*.js', 'template/custom/*.css'])
+    return gulp.src(['template/*/*.js', 'template/*/*.css'])
         .pipe(gulp.dest(RELEASE))
         .on('error', plugins.util.log);
 });

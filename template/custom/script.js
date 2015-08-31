@@ -195,6 +195,7 @@ var postPoint = {};
 
         if (downloadOption === 'false') {
             $('.mobile-app-download').remove();
+            $('.mobile-app-main-text').text('应用商店搜索 洋葱数学');
         }
         if (isolatedOption === 'true' || !isolatedOption) {
             $('#isolateT').show();
@@ -282,6 +283,9 @@ var postPoint = {};
     if (q !== undefined) {
         simpleStorage.set('q', q);
     }
+    else {
+        simpleStorage.set('q', 'defaultLanding');
+    }
     window.getUrlParameter = getUrlParameter;
 }();
 
@@ -303,10 +307,11 @@ var createShareUrl = function (q, videoType, topicDesc) {
     else if (videoType === 'advanced') {
         templateScript = '【进阶必备：' + document.title + '】';
     }
+    var qudao = simpleStorage.get('q');
     switch (q) {
         case 'qq':
             var p = {
-                url: location.href,
+                url: 'http://' + location.host + location.pathname + '?q=' + qudao,
                 desc: templateScript,
                 title: '洋葱数学',
                 summary: '洋葱数学：让数学更简单',
@@ -322,7 +327,7 @@ var createShareUrl = function (q, videoType, topicDesc) {
             break;
         case 'qzone':
             var p = {
-                url: location.href,
+                url: 'http://' + location.host + location.pathname + '?q=' + qudao,
                 showcount: '0',
                 desc: templateScript + '（分享@洋葱数学）',
                 summary: topicDesc,
@@ -338,7 +343,7 @@ var createShareUrl = function (q, videoType, topicDesc) {
             break;
         case 'weibo':
             //url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&amp;type=button&amp;language=zh_cn&amp;appkey=1623791526&amp;searchPic=false&amp;style=simple';
-            url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + templateScript + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
+            url = 'http://service.weibo.com/share/share.php?url=' + 'http://' + location.host + location.pathname + '?q=' + qudao + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + templateScript + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
             break;
     }
     var win = window.open(url, '_blank');

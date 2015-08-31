@@ -31,8 +31,8 @@ i {
 
 @font-face {
     font-family: 'onion-chinese';
-    src: url('FZLanTYJWC.eot');
-    src: url('FZLanTYJWC.ttf') format('truetype');
+    src: url('../FZLanTYJWC.eot');
+    src: url('../FZLanTYJWC.ttf') format('truetype');
 }
 
 body {
@@ -49,15 +49,6 @@ video {
     font-size: 18px;
     font-family: sans-serif;
     color: #3B3B3B;
-}
-
-.bottom-bg {
-    width: 100%;
-    height: 16em;
-    background-image: url("../../assets/bg.png");
-    position: fixed;
-    bottom: 0;
-    z-index: -1;
 }
 
 .fa-angle-down {
@@ -462,12 +453,6 @@ html {
     height: 100%;
 }
 
-@font-face {
-    font-family: 'onion-chinese';
-    src: url('FZLanTYJWC.eot');
-    src: url('FZLanTYJWC.ttf') format('truetype');
-}
-
 body {
     height: 100%;
 }
@@ -481,15 +466,6 @@ video {
     font-size: 18px;
     font-family: sans-serif;
     color: #3B3B3B;
-}
-
-.bottom-bg {
-    width: 100%;
-    height: 16em;
-    background-image: url("../../assets/bg.png");
-    position: fixed;
-    bottom: 0;
-    z-index: -1;
 }
 
 .head-container {

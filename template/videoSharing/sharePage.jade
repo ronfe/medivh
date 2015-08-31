@@ -10,7 +10,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
         // inject:css
         // endinject
-        link(rel='stylesheet' href='seed1.css')
+        link(rel='stylesheet' href='videoSharing/share.css')
     body.pc(post-point="enterLandingPage")
         #pcluodi
             .container.head-container
@@ -50,7 +50,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .bottom-bg(post-point="clickBottomBackgroundLogin",href="http://yangcong345.com/login")
         #mobileluodi(style='display: none')
             #isolateF.mobile-banner(style='display: none;')
-                .mobile-logo(onclick='window.location="[chapter] " + "#{chapter}" + ".html";')
+                .mobile-logo(onclick='window.location="chapter-" + "#{chapter}" + ".html";')
                     img(src="mobile-back.png")
                 .mobile-chapter #{chapter}
                 .mobile-home(onclick='window.location="/";')
@@ -83,7 +83,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     img(src="mobile-appicon.png")
                 .mobile-app-text
                     .mobile-app-main-text 下载 洋葱数学
-                    .mobile-app-assist-text 看更多优质初中视频
+                    .mobile-app-assist-text 更多趣味初中视频在等你！
                 .mobile-app-download(onclick="redirectDownloadApp()",post-point='clickMobileDownloadBtn') 下载应用
 
 
@@ -91,4 +91,4 @@ html(xmlns:wb='http://open.weibo.com/wb')
         // inject:js
         // endinject
 
-        script(src='script1.js')
+        script(src='custom/script.js')

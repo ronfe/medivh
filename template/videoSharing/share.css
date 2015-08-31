@@ -12,8 +12,8 @@ html {
 
 @font-face {
     font-family: 'onion-chinese';
-    src: url('FZLanTYJWC.eot');
-    src: url('FZLanTYJWC.ttf') format('truetype');
+    src: url('../FZLanTYJWC.eot');
+    src: url('../FZLanTYJWC.ttf') format('truetype');
 }
 
 body {
@@ -34,7 +34,7 @@ video {
 .bottom-bg {
     width: 100%;
     height: 16em;
-    background-image: url("../../assets/bg.png");
+    background-image: url("../bg.png");
     position: fixed;
     bottom: 0;
     z-index: -1;
@@ -57,39 +57,6 @@ video {
     font-size: 14px;
     font-family: sans-serif;
     color: #BDBDBD;
-}
-
-.list {
-    width: 100%;
-    font-size: 0;
-    margin-top: 1.2rem;
-    padding-left: 0;
-}
-
-.list li {
-    display: inline-block;
-    box-sizing: border-box;
-    width: 50%;
-    padding: 0 .4rem 1.1rem;
-}
-
-.list li a {
-    color: black;
-}
-
-.list li a:hover {
-    text-decoration: none;
-}
-
-.list img {
-    width: 100%;
-}
-
-.list h3 {
-    height: 3rem;
-    line-height: 3rem;
-    overflow: hidden;
-    font-size: 1.5rem;
 }
 
 .mejs-container {
@@ -235,10 +202,6 @@ video {
     line-height: 200%;
     height: 100%;
     font-size: 16px;
-}
-
-.mobile-space {
-    margin: 0 .8rem;
 }
 
 .mobile-title {
