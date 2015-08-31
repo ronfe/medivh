@@ -79,6 +79,7 @@ exports.traverse = function (mongoose, cb) {
                         state: 'updating'
                     }]
                 }, function (err, chapters) {
+
                     // async 2nd chapters
                     async.each(chapters, function (chapter, callback) {
                         var tempChapter = {
@@ -104,9 +105,19 @@ exports.traverse = function (mongoose, cb) {
                                     actThumbnail: chapter.icon,
                                     video: gv[0].url
                                 });
-                            }
-                            else {
-                                populateChapter['guideVideo'] = 0;
+                                var guideTopic = {
+                                    topicName: "章节引入",
+                                    icon: "guide.png",
+                                    chapter: chapter.name,
+                                    videos: [
+                                        {
+                                            task: "guide",
+                                            activityName: chapter.name + '的引入',
+                                            videoUrl: gv[0].url
+                                        }
+                                    ]
+                                };
+                                populateChapter.topics.push(guideTopic);
                             }
                         });
                         // async 3rd topics/icourses

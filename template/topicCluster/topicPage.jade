@@ -41,8 +41,10 @@ html(xmlns:wb='http://open.weibo.com/wb')
                                                     span [基础] #{video.activityName}
                                                 when 'advanced'
                                                     span [提高] #{video.activityName}
+                                                when 'guide'
+                                                    span [引入] #{video.activityName}
                                                 default
-                                                    #{video.activityName}
+                                                    span #{video.activityName}
 
 // inject:js
 // endinject
