@@ -184,7 +184,7 @@ gulp.task('insertJadeToHtml', ['renameJadeConcatedTemplate'], function () {
 
 //优先npm start
 gulp.task('copy-seed1', function () {
-    return gulp.src('template/seed1.jade')
-        .pipe(gulpCopy('font-compress/', 2));
+    return gulp.src('template/videoSharing/sharePage.jade')
+        .pipe(gulpCopy('font-compress/', 3));
 });
 /********************/
