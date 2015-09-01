@@ -32,9 +32,9 @@ setTimeout(orientationChangeEv, 0);
 $(function (){
     var query = window.location.search;
     if (query.length === 0) {
-        window.location.search = '?isolate=false';
+        simpleStorage.set('isolatedOption', 'false');
     }
     else if (query.match(/isolate/) === null) {
-        window.location.search = window.location.search + '&isolate=false';
+        simpleStorage.set('isolatedOption', 'false');
     }
 });
