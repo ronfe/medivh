@@ -14,6 +14,7 @@ $(function () {
         }
     });
 });
+
 var orientationChangeEv = function () {
     var winW = window.innerWidth, w, fontSize;
     //保证window内部的宽度在320-640之间，最小为320，最大为640
@@ -26,3 +27,14 @@ var orientationChangeEv = function () {
 window.addEventListener('resize', orientationChangeEv);
 //初始时，执行一次
 setTimeout(orientationChangeEv, 0);
+
+// All the request of cluster pages must has i=false query
+$(function (){
+    var query = window.location.search;
+    if (query.length === 0) {
+        window.location.search = '?isolate=false';
+    }
+    else if (query.match(/isolate/) === null) {
+        window.location.search = window.location.search + '&isolate=false';
+    }
+});
