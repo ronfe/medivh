@@ -177,7 +177,7 @@ gulp.task('renameJadeConcatedTemplate', function () {
 gulp.task('insertJadeToHtml', ['renameJadeConcatedTemplate'], function () {
     return gulp.src('font-compress/template/fontCompressTemplate.html')
         .pipe(gfi({
-            "/* jadeStr */": "font-compress/template/seed1.jade"
+            "/* jadeStr */": "font-compress/template/videoSharing/sharePage.jade"
         }))
         .pipe(gulp.dest('font-compress/template/'))
 });
