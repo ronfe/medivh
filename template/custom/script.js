@@ -29,7 +29,7 @@ var postPoint = {};
          */
         var myId;
         if (document.cookie.match(/tmp\.point\.userId/) == null) {
-            var tempId = new ObjectId();
+            var tempId = new ObjectId().toString();
             document.cookie = 'tmp.point.userId=' + tempId;
         }
         myId = document.cookie.match(/tmp\.point\.userId\=\w+(?=(;|$))/)[0].split('=')[1];
