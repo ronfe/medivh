@@ -5,7 +5,7 @@ var del = require('del');
 var rename = require('gulp-rename');
 var gfi = require("gulp-file-insert");
 var fontSpider = require('gulp-font-spider');
-var gulpCopy = require('gulp-copy');
+var gulpConcat = require('gulp-concat');
 /****************************/
 
 var bower = require('./bower.json');
@@ -177,14 +177,15 @@ gulp.task('renameJadeConcatedTemplate', function () {
 gulp.task('insertJadeToHtml', ['renameJadeConcatedTemplate'], function () {
     return gulp.src('font-compress/template/fontCompressTemplate.html')
         .pipe(gfi({
-            "/* jadeStr */": "font-compress/template/videoSharing/sharePage.jade"
+            "/* jadeStr */": "font-compress/fontMaterial.jade"
         }))
         .pipe(gulp.dest('font-compress/template/'))
 });
 
 //优先npm start
 gulp.task('copy-seed1', function () {
-    return gulp.src('template/videoSharing/sharePage.jade')
-        .pipe(gulpCopy('font-compress/', 3));
+    return gulp.src(['template/**/*.jade', 'template/**/*.js'])
+        .pipe(gulpConcat('fontMaterial.jade'))
+        .pipe(gulp.dest('font-compress'))
 });
 /********************/

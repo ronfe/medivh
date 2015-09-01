@@ -33,17 +33,18 @@ exports.generate = function (arr) {
                     cb(null, 'chapters');
                 }
             );
+        },
+        function (cb) {
+            fs.writeFile('./out/chapter-list.html', chapterFn(arr[1]), function (err) {
+                if (err) console.error(err);
+                console.log('Chapter list ready.');
+                cb(null, 'index');
+            });
         }
     ], function (err, data) {
         if (err) console.error(err);
         console.log('Parallel jade conversion done.');
         process.exit(0);
-    });
-
-
-    fs.writeFile("./out/index.html", chapterFn(arr[1]), function (err) {
-        if (err) console.error(err);
-        console.log('Index ready.');
     });
 
 };

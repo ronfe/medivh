@@ -282,11 +282,11 @@ var postPoint = {};
     }
 
     var q = getUrlParameter('q');
-    console.log(q);
+    var ssQ = simpleStorage.get('q');
     if (q !== undefined) {
         simpleStorage.set('q', q);
     }
-    else {
+    else if (ssQ === undefined) {
         simpleStorage.set('q', 'defaultLanding');
     }
     window.getUrlParameter = getUrlParameter;
