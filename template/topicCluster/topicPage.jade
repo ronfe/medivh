@@ -1,0 +1,52 @@
+doctype html
+html(xmlns:wb='http://open.weibo.com/wb')
+    head
+        meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+        title #{chapterName} - 洋葱数学
+        meta(charset='utf8')
+        meta(name='keywords', content='洋葱数学，初中数学，数学，数学学习，微课，微视频，翻转课堂')
+        meta(name='description' content='洋葱数学让每个学生“一学就懂”！将趣味短视频与习题结合，轻松进行个性化在线学习，每天5分钟，赶快体验！')
+        link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+        link(rel="stylesheet", href="topic.css")
+        meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
+        // inject:css
+        // endinject
+    body(post-point='{"eventKey":"enterTopicsLandingPage"}')
+        #mobileluodi
+            #isolateF.mobile-banner(style='display: none;')
+                .mobile-logo(onclick='window.location="chapter-list.html";')
+                    img(src="mobile-back.png")
+                .mobile-chapter #{chapterName}
+                .mobile-home(onclick='window.location="chapter-list.html";')
+                    img(src="mobile-home.png")
+            #isolateT.mobile-banner(style='display:none;')
+                .mobile-logo
+                    img(src="mobile-logo.png")
+                .mobile-slogan 让数学变简单
+            .space2
+                ul.list-ul
+                    each val in topics
+                        li
+                            .hd(post-point='{"eventKey":"clickTopicsToggle", "topicName":"#{val.topicName}"}')
+                                img(src= val.icon)
+                                h3= val.topicName
+                                i.fa.fa-angle-down
+                            .bd
+                                each video in val.videos
+                                    h4
+                                        a(href="../" + video.activityName + '.html' alt="", post-point='{"eventKey":"clickNestedVideo", "videoName":"#{video.activityName}"}')
+                                            i.fa.fa-play-circle-o
+                                            case video.task
+                                                when 'elementary'
+                                                    span [基础] #{video.activityName}
+                                                when 'advanced'
+                                                    span [提高] #{video.activityName}
+                                                when 'guide'
+                                                    span [引入] #{video.activityName}
+                                                default
+                                                    span #{video.activityName}
+
+// inject:js
+// endinject
+script(src='script.js')
+script(src='topic.js')

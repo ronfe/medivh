@@ -34,7 +34,7 @@ video {
 .bottom-bg {
     width: 100%;
     height: 16em;
-    background-image: url("../assets/bg.png");
+    background-image: url("bg.png");
     position: fixed;
     bottom: 0;
     z-index: -1;
@@ -72,7 +72,7 @@ video {
 
 .mobile-app-assist-text {
     color: #5dc9f6;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 .mobile-app-download {
@@ -110,6 +110,10 @@ video {
     width: 100%;
     display: table;
     height: 54px;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    background-color: white;
 }
 
 .mobile-bottom {
@@ -119,6 +123,33 @@ video {
     background-color: #1696ea;
     padding: 1em;
     height: 5em;
+}
+
+.mobile-chapter {
+    position: relative;
+    display: table-cell;
+    width: 40%;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.mobile-home {
+    position: relative;
+    display: table-cell;
+    width: 30%;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+
+.mobile-home img {
+    float: right;
+}
+
+.mobile-hyper-zone {
+    margin-top: 54px;
 }
 
 .mobile-hyper-zone video {

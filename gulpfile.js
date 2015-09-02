@@ -5,7 +5,7 @@ var del = require('del');
 var rename = require('gulp-rename');
 var gfi = require("gulp-file-insert");
 var fontSpider = require('gulp-font-spider');
-var gulpCopy = require('gulp-copy');
+var gulpConcat = require('gulp-concat');
 /****************************/
 
 var bower = require('./bower.json');
@@ -23,8 +23,8 @@ var plugins = require("gulp-load-plugins")({
 var runSequence = require('run-sequence');
 
 // script
-var SCRIPT = 'template/script.js';
-var CSS = 'template/seed.css';
+var SCRIPT = 'template/*.js';
+var CSS = 'template/*.css';
 
 var DEBUG = 'build';
 var RELEASE = 'bin';
@@ -36,6 +36,7 @@ gulp.task('debug', function (callback) {
     runSequence('clean',
         ['build_js', 'build_css', 'build_copy'],
         'build_index',
+        'build_copy_custom',
         callback);
 });
 
@@ -43,6 +44,7 @@ gulp.task('release', function (callback) {
     runSequence('clean',
         ['bin_js', 'bin_css', 'bin_copy'],
         'bin_index',
+        'bin_copy_custom',
         callback);
 });
 
@@ -54,7 +56,7 @@ gulp.task('build_js', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.js'
-    }).concat(SCRIPT))
+    }))
         //.pipe(plugins.debug())
         .pipe(plugins.concat(bowerDir + bower.version + '.js'))
         .pipe(gulp.dest(DEBUG))
@@ -66,7 +68,7 @@ gulp.task('bin_js', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.js'
-    }).concat(SCRIPT))
+    }))
         //.pipe(plugins.debug())
         .pipe(plugins.concat(bowerDir + bower.version + '.js'))
         .pipe(plugins.uglify())
@@ -79,7 +81,7 @@ gulp.task('build_css', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.css'
-    }).concat(CSS))
+    }))
         .pipe(plugins.concat(bowerDir + bower.version + '.min.css'))
         .pipe(plugins.basename())
         .pipe(gulp.dest(DEBUG))
@@ -91,7 +93,7 @@ gulp.task('bin_css', function () {
     return gulp.src(plugins.mainBowerFiles({
         base: bowerDir,
         filter: '**/*.css'
-    }).concat(CSS))
+    }))
         .pipe(plugins.concat(bowerDir + bower.version + '.min.css'))
         .pipe(plugins.basename())
         .pipe(plugins.minifyCSS())
@@ -114,6 +116,18 @@ gulp.task('bin_copy', function () {
         base: bowerDir,
         filter: /.*\.((?!less|css|js).)*$/i
     }).concat('assets/*').concat('out/*.html'))
+        .pipe(gulp.dest(RELEASE))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('build_copy_custom', function () {
+    return gulp.src(['template/custom/*.js', 'template/custom/*.css'])
+        .pipe(gulp.dest(DEBUG))
+        .on('error', plugins.util.log);
+});
+
+gulp.task('bin_copy_custom', function () {
+    return gulp.src(['template/*/*.js', 'template/*/*.css'])
         .pipe(gulp.dest(RELEASE))
         .on('error', plugins.util.log);
 });
@@ -163,14 +177,15 @@ gulp.task('renameJadeConcatedTemplate', function () {
 gulp.task('insertJadeToHtml', ['renameJadeConcatedTemplate'], function () {
     return gulp.src('font-compress/template/fontCompressTemplate.html')
         .pipe(gfi({
-            "/* jadeStr */": "font-compress/template/seed1.jade"
+            "/* jadeStr */": "font-compress/fontMaterial.jade"
         }))
         .pipe(gulp.dest('font-compress/template/'))
 });
 
 //优先npm start
 gulp.task('copy-seed1', function () {
-    return gulp.src('template/seed1.jade')
-        .pipe(gulpCopy('font-compress/', 2));
+    return gulp.src(['template/**/*.jade', 'template/**/*.js'])
+        .pipe(gulpConcat('fontMaterial.jade'))
+        .pipe(gulp.dest('font-compress'))
 });
 /********************/

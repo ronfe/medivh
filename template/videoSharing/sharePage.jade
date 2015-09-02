@@ -10,6 +10,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
         meta(name='viewport', content='width=device-width, maximum-scale=1, user-scalable=no')
         // inject:css
         // endinject
+        link(rel='stylesheet' href='share.css')
     body.pc(post-point="enterLandingPage")
         #pcluodi
             .container.head-container
@@ -48,10 +49,17 @@ html(xmlns:wb='http://open.weibo.com/wb')
                 .redirect-btn(post-point='clickLandingShareSideBtn', onclick='window.location="http://yangcong345.com/signup"') 更多免费视频
             .bottom-bg(post-point="clickBottomBackgroundLogin",href="http://yangcong345.com/login")
         #mobileluodi(style='display: none')
-            .mobile-banner
+            #isolateF.mobile-banner(style='display: none;')
+                .mobile-logo(onclick='window.location="chapter-" + "#{chapter}" + ".html";')
+                    img(src="mobile-back.png")
+                .mobile-chapter #{chapter}
+                .mobile-home(onclick='window.location="chapter-list.html";')
+                    img(src="mobile-home.png")
+            #isolateT.mobile-banner(style='display:none;')
                 .mobile-logo
                     img(src="mobile-logo.png")
                 .mobile-slogan 让数学变简单
+
             .mobile-hyper-zone
                 //video#mobile-video(src=video, onplay='$(".mejs-fullscreen-button").click();', poster=actThumbnail, width='100%')
                 video#mobile-video(src=video, poster=actThumbnail, controls='controls', width='100%')
@@ -75,10 +83,12 @@ html(xmlns:wb='http://open.weibo.com/wb')
                     img(src="mobile-appicon.png")
                 .mobile-app-text
                     .mobile-app-main-text 下载 洋葱数学
-                    .mobile-app-assist-text 看更多优质初中视频
+                    .mobile-app-assist-text 更多趣味初中视频在等你！
                 .mobile-app-download(onclick="redirectDownloadApp()",post-point='clickMobileDownloadBtn') 下载应用
 
 
 
         // inject:js
         // endinject
+
+        script(src='script.js')

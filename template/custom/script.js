@@ -15,6 +15,7 @@
  * postPoint.buryPoint(element, pointData);
  * And the point will be sent immediately.
  */
+var storage = $.sessionStorage;
 var postPoint = {};
 +function ($, window) {
     /**
@@ -28,7 +29,7 @@ var postPoint = {};
          */
         var myId;
         if (document.cookie.match(/tmp\.point\.userId/) == null) {
-            var tempId = new ObjectId();
+            var tempId = new ObjectId().toString();
             document.cookie = 'tmp.point.userId=' + tempId;
         }
         myId = document.cookie.match(/tmp\.point\.userId\=\w+(?=(;|$))/)[0].split('=')[1];
@@ -39,7 +40,10 @@ var postPoint = {};
                 eventValue: {},
                 url: '',
                 header: {
-                    userId: myId
+                    userId: myId,
+                    downloadOption: simpleStorage.get('downloadOption') ? simpleStorage.get('downloadOption') : 'true',
+                    isolatedOption: simpleStorage.get('isolatedOption') ? simpleStorage.get('isolatedOption') : 'true',
+                    currentName: window.location.pathname
                 },
                 from: 'mobile'
             };
@@ -156,6 +160,53 @@ var postPoint = {};
     };
     var document = window.document;
     $(document).ready(function () {
+
+        // judge user's query
+        if (simpleStorage.get('downloadOption')) {
+            if (getUrlParameter('download')) {
+                if (!(getUrlParameter('download') === simpleStorage.get('downloadOption'))) {
+                    simpleStorage.set('downloadOption', getUrlParameter('download'));
+
+                }
+                var downloadOption = simpleStorage.get('downloadOption');
+            }
+            else {
+                var downloadOption = simpleStorage.get('downloadOption');
+            }
+        }
+        else {
+            simpleStorage.set('downloadOption', getUrlParameter('download'));
+            var downloadOption = getUrlParameter('download') ? getUrlParameter('download') : 'true';
+        }
+
+        if (simpleStorage.get('isolatedOption')) {
+            if (getUrlParameter('isolate')) {
+                if (!(getUrlParameter('isolate') === simpleStorage.get('isolatedOption'))) {
+                    simpleStorage.set('isolatedOption', getUrlParameter('isolate'));
+
+                }
+                var isolatedOption = simpleStorage.get('isolatedOption');
+            }
+            else {
+                var isolatedOption = simpleStorage.get('isolatedOption');
+            }
+        }
+        else {
+            simpleStorage.set('isolatedOption', getUrlParameter('isolate'));
+            var isolatedOption = getUrlParameter('isolate') ? getUrlParameter('isolate') : 'true';
+        }
+
+        if (downloadOption === 'false') {
+            $('.mobile-app-download').remove();
+            $('.mobile-app-main-text').text('应用商店搜索 洋葱数学');
+        }
+        if (isolatedOption === 'true' || !isolatedOption) {
+            $('#isolateT').show();
+        }
+        else {
+            $('#isolateF').show();
+        }
+
         $('[post-point]').each(function (index, element) {
             var data = $(element).attr('post-point');
 
@@ -231,9 +282,12 @@ var postPoint = {};
     }
 
     var q = getUrlParameter('q');
-    console.log(q);
+    var ssQ = simpleStorage.get('q');
     if (q !== undefined) {
         simpleStorage.set('q', q);
+    }
+    else if (ssQ === undefined) {
+        simpleStorage.set('q', 'defaultLanding');
     }
     window.getUrlParameter = getUrlParameter;
 }();
@@ -256,10 +310,11 @@ var createShareUrl = function (q, videoType, topicDesc) {
     else if (videoType === 'advanced') {
         templateScript = '【进阶必备：' + document.title + '】';
     }
+    var qudao = simpleStorage.get('q');
     switch (q) {
         case 'qq':
             var p = {
-                url: location.href,
+                url: 'http://' + location.host + location.pathname + '?q=' + qudao,
                 desc: templateScript,
                 title: '洋葱数学',
                 summary: '洋葱数学：让数学更简单',
@@ -275,7 +330,7 @@ var createShareUrl = function (q, videoType, topicDesc) {
             break;
         case 'qzone':
             var p = {
-                url: location.href,
+                url: 'http://' + location.host + location.pathname + '?q=' + qudao,
                 showcount: '0',
                 desc: templateScript + '（分享@洋葱数学）',
                 summary: topicDesc,
@@ -291,7 +346,7 @@ var createShareUrl = function (q, videoType, topicDesc) {
             break;
         case 'weibo':
             //url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&amp;type=button&amp;language=zh_cn&amp;appkey=1623791526&amp;searchPic=false&amp;style=simple';
-            url = 'http://service.weibo.com/share/share.php?url=' + window.location.href + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + templateScript + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
+            url = 'http://service.weibo.com/share/share.php?url=' + 'http://' + location.host + location.pathname + '?q=' + qudao + '&type=button&ralateUid=5341300586&language=zh_cn&appkey=1623791526&title=' + templateScript + '&pic=' + $('#video-thumbnail').attr('thumbnail') + '&searchPic=false&style=simple';
             break;
     }
     var win = window.open(url, '_blank');
@@ -433,7 +488,6 @@ ObjectId.prototype.toString = function () {
         '0000'.substr(0, 4 - pid.length) + pid +
         '000000'.substr(0, 6 - increment.length) + increment;
 };
-
 
 if (bowser.android || bowser.ios) {
     $('#pcluodi').remove();

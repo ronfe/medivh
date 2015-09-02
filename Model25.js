@@ -64,6 +64,10 @@ exports.traverse = function (mongoose, cb) {
     }));
 
     var target = [];
+    var guideTopics = [];
+    var guideChapters = {
+        chapterList: []
+    };
 
     Publisher.findOne({name: '人教版'}, function (err, publisher) {
         Cvgrade.find({cv: publisher._id}, function (err, cvGrades) {
@@ -75,12 +79,24 @@ exports.traverse = function (mongoose, cb) {
                         state: 'updating'
                     }]
                 }, function (err, chapters) {
+
                     // async 2nd chapters
                     async.each(chapters, function (chapter, callback) {
+                        var tempChapter = {
+                            chapterName: chapter.name,
+                            chapterIcon: chapter.icon
+                        };
+                        guideChapters.chapterList.push(tempChapter);
+                        var populateChapter = {
+                            chapterName: chapter.name,
+                            guideVideo: 1,
+                            topics: []
+                        };
                         Video.find({_id: chapter.guideVideo}, function (err, gv) {
                             if (gv[0]) {
                                 target.push({
                                     chapter: chapter.name,
+                                    chapterIcon: chapter.icon,
                                     topic: "章节引入",
                                     topicIcon: "guide.png",
                                     task: "guide",
@@ -89,11 +105,31 @@ exports.traverse = function (mongoose, cb) {
                                     actThumbnail: chapter.icon,
                                     video: gv[0].url
                                 });
+                                var guideTopic = {
+                                    topicName: "章节引入",
+                                    icon: "guide.png",
+                                    chapter: chapter.name,
+                                    videos: [
+                                        {
+                                            task: "guide",
+                                            activityName: chapter.name + '的引入',
+                                            videoUrl: gv[0].url
+                                        }
+                                    ]
+                                };
+                                populateChapter.topics.push(guideTopic);
                             }
                         });
                         // async 3rd topics/icourses
                         async.each(chapter.icourses, function (icourse, callback) {
                             Topic.findOne({_id: icourse.topic}, function (err, topic) {
+                                var tempTopic = {
+                                    topicName: topic.name,
+                                    icon: topic.icon,
+                                    chapter: chapter.name,
+                                    videos: []
+                                };
+
                                 Task.find({_id: {$in: topic.tasks}}, function (err, tasks) {
                                     // async 4th tasks
                                     async.each(tasks, function (task, callback) {
@@ -102,8 +138,17 @@ exports.traverse = function (mongoose, cb) {
                                             async.each(activities, function (activity, callback) {
                                                 Video.find({_id: {$in: activity.videos}}, function (err, videos) {
                                                     _.forEach(videos, function (video) {
+                                                        tempTopic.videos.push(
+                                                            {
+                                                                task: task.type,
+                                                                activityName: activity.name,
+                                                                videoUrl: video.url
+                                                            }
+                                                        );
+                                                        populateChapter.topics.push(tempTopic);
                                                         target.push({
                                                             chapter: chapter.name,
+                                                            chapterIcon: chapter.icon,
                                                             topic: topic.name,
                                                             topicIcon: topic.icon,
                                                             topicDesc: topic.desc,
@@ -127,13 +172,14 @@ exports.traverse = function (mongoose, cb) {
                             });
                         }, callback);
                         // end of 3rd async
-
+                        guideTopics.push(populateChapter);
                     }, callback);
                     // end of 2nd async
                 });
             }, function () {
                 chaptersNameStr += '立即免费使用';
                 console.log(chaptersNameStr, topicsNameStr, activitiesNameStr);
+                target = [target, guideChapters, _.uniq(guideTopics)];
                 cb(target);
             });
             // end of 1st async
