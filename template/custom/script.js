@@ -54,7 +54,8 @@ var postPoint = {};
                 eventValue: {},
                 url: '',
                 header: {
-                    userId: myId
+                    userId: myId,
+                    currentName: window.location.pathname
                 },
                 from: 'pc'
             };
