@@ -9,6 +9,9 @@
     bower install
 
 ## 工作流 ##
+
+    for production environment, only ```sh release.sh```
+    
     gulp copy-seed1
 
     <!-- npm start | test // 批量生成html -->

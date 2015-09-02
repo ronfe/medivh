@@ -41,8 +41,8 @@ var postPoint = {};
                 url: '',
                 header: {
                     userId: myId,
-                    downloadOption: simpleStorage.get('downloadOption'),
-                    isolatedOption: simpleStorage.get('isolatedOption'),
+                    downloadOption: simpleStorage.get('downloadOption') ? simpleStorage.get('downloadOption') : 'true',
+                    isolatedOption: simpleStorage.get('isolatedOption') ? simpleStorage.get('isolatedOption') : 'true',
                     currentName: window.location.pathname
                 },
                 from: 'mobile'
