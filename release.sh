@@ -5,4 +5,4 @@ gulp copy-seed1
 cnpm start >> font-compress/template/seed1.jade
 gulp font-compress
 gulp release
-cp template/index/index.html bin/index.html
+cp template/index/*.html bin/
