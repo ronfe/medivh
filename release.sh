@@ -6,3 +6,5 @@ cnpm start >> font-compress/fontMaterial.jade
 gulp font-compress
 gulp release
 cp template/index/*.html bin/
+mv bin/**/*.* bin/
+rm -rf bin/**/

@@ -12,8 +12,8 @@ html {
 
 @font-face {
     font-family: 'onion-chinese';
-    src: url('../FZLanTYJWC.eot');
-    src: url('../FZLanTYJWC.ttf') format('truetype');
+    src: url('FZLanTYJWC.eot');
+    src: url('FZLanTYJWC.ttf') format('truetype');
 }
 
 body {
@@ -34,7 +34,7 @@ video {
 .bottom-bg {
     width: 100%;
     height: 16em;
-    background-image: url("../bg.png");
+    background-image: url("bg.png");
     position: fixed;
     bottom: 0;
     z-index: -1;
@@ -110,6 +110,10 @@ video {
     width: 100%;
     display: table;
     height: 54px;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    background-color: white;
 }
 
 .mobile-bottom {
@@ -142,6 +146,10 @@ video {
 
 .mobile-home img {
     float: right;
+}
+
+.mobile-hyper-zone {
+    margin-top: 54px;
 }
 
 .mobile-hyper-zone video {
