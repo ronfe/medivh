@@ -41,10 +41,6 @@ video {
     text-overflow:ellipsis;
 }
 
-.list h3:after{
-    content:'...';
-}
-
 .list img {
     width: 100%;
 }
