@@ -148,6 +148,8 @@ video {
     position: fixed;
     z-index: 99;
     background-color: white;
+    white-space:nowrap;
+    text-overflow:ellipsis;
     top: 0;
 }
 

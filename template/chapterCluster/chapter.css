@@ -37,6 +37,12 @@ video {
     line-height: 3rem;
     overflow: hidden;
     font-size: 1.5rem;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.list h3:after{
+    content:'...';
 }
 
 .list img {
