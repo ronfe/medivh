@@ -3,6 +3,8 @@ server {
         server_name vs1.yangcong345.com;
         root /home/master/medivh/bin;
 
+        add_header 'Access-Control-Allow-Credentials' 'true';
+
         # if ($http_user_agent !~* (Baidu|qiniu)) {
         #         return 403;
         # }
