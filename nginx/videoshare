@@ -3,13 +3,24 @@ server {
         server_name vs1.yangcong345.com;
         root /home/master/medivh/bin;
 
-        add_header 'Access-Control-Allow-Credentials' 'true';
-
         # if ($http_user_agent !~* (Baidu|qiniu)) {
         #         return 403;
         # }
 
         location / {
-		try_files $uri =404;
+                try_files $uri =404;
         }
+
+        location /home$ {
+                if ($http_user_agent ~ "^.+Baiduspider.*$" ) {
+                        rewrite ^.*$ /eosrui.html break;
+                }
+        }
+
+}
+
+server {
+        listen 80;
+        server_name vs.yangcong345.com;
+        index /home/master/medivh/bin/index.html;
 }
