@@ -501,6 +501,11 @@ if (bowser.android || bowser.ios) {
     //else {
     //    var downloadURL = 'http://m.yangcong345.com/api/apk/latest.apk';
     //}
+
+    // replace qiniu bucket for mobile sharing
+    var text = $('#mobile-video').attr('src');
+    var mobileUrl = text.replace('7xaw4c', '7xaw4d');
+    $('video').attr('src', mobileUrl);
     $('#mobileluodi').show();
 
 }
@@ -514,6 +519,8 @@ else {
     $('#mobileluodi').remove();
     var signUpURL = 'http://yangcong345.com/signup';
     var loginURL = 'http://yangcong345.com/login';
+
+
     if (window.location.search[0] === '?') {
         $('#signup').attr('href', signUpURL + window.location.search);
         $('#login').attr('href', loginURL + window.location.search);
