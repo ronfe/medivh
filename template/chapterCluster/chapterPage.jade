@@ -22,7 +22,7 @@ html(xmlns:wb='http://open.weibo.com/wb')
             .mobile-space
                 ul.list
                     each val in chapterList
-                        li
+                        li(post-point='{"eventKey":"clickTopicPage", "chapterName":"#{val.chapterName}"})
                             a(href='chapter-' + val.chapterName + '.html')
                                 img(src=val.chapterIcon, alt="")
                                 h3= val.chapterName
